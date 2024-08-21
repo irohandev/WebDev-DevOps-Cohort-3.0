@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background: grey;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        h1{
+            display: flex;
+            justify-content: center;
+        }
+        div{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            display: flex;
+            padding: 10px;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>TODO App</h1>
+    <input style="height: 40px;" type="text" placeholder=" Enter Your Todo!"></input>
+    <button style="width: 100px; display: flex; justify-content: center; padding: 10px; margin-top: 10px;" onclick="AddTodo()">Submit</button>
+</body>
+<script>
+    let ctr = 1;
+    function AddTodo(){
+        const inputEl = document.querySelector("input");
+        const value = inputEl.value;
+        const newdivEl = document.createElement("div");
+        newdivEl.setAttribute("id", ctr);
+        newdivEl.innerHTML="<div>" + value + "</div><button onclick='DelTodo("+ctr+")'>Delete Todo</button>"
+        const parent = document.querySelector("body")
+        parent.appendChild(newdivEl)
+        ctr = ctr+1;
+    }
+
+    function DelTodo(index){
+        const element = document.getElementById(index)
+        element.parentNode.removeChild(element)
+    }
+</script>
+</html>
