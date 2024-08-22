@@ -1,0 +1,39 @@
+Git Bash and terminal Basics:
+
+1. pwd - Check the directory
+
+2. cd - Change the directory. {cd Desktop}
+
+3. ls - show all the files & folder.
+
+4. mkdir - Make new directory i.e to create new folder. {mkdir folder_name}
+
+5. touch - To make new file in that directory. {touch file_name}
+            - [mkdir se jo folder banaye aur uske andar kahi bhi new koi file bnaye toh use touch command]
+
+6. cat - To show whats present on a file like it gives us the output. {cat file_name}
+
+7. vi - It helps in editing the file. {vi file_name}
+        - For inserting element in this file after command excutes press I.
+        - For exiting that press ESCAPE after that write :q! in the terminal to direct exit the file & press :wq! for saving the edited part and then it will exit.
+
+8. mv - Move file / folder form one place to another.{ mv file_name moving_folder_name} or {mv folder_name moving_folder_name}
+        - file_name / folder_name - means jis file ya folder ko move krna hai uske name ko likhna hai
+        - moving_folder_name - mean jis folder mein usko move krwana hai uske name ko likhna hai
+
+9. cp - Same as mv command main difference is mv moves the file / folder and cp copies the file / folder. {cp file_name copying_folder_name } or {cp file_name -r copying_folder_name}
+
+10. nvm - It lets us to manage and switch between different versions of Node.js on your local machine.
+
+11. npm - This command will help us to install / download the packages {npm install package_name / dependencies_name / library_name }
+
+12. node - Opens the node.js shell command to write Js codes in it. There we can write / run js code locally.
+            - To exit press CTRL+C to get back to the bash shell
+            - Example
+                - Lets create a js file in desktop [touch a.js]
+                - edit that file [vi a.js]
+                - write there like : console.log("Heyy");
+                - we save and exit that file [press ESP and then write :wq! ]
+                - if we run that file in bash shell using cat command it will give output : console,log("Heyy") [cat a.js]
+                - but if we run that using node command then it will give out output : Heyy [node a.js]
+
