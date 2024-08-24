@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .search{
+            display: inline;
+            width: 200px;
+            height: 30px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-top: 10px;
+        }
+        h1{
+            display: flex;
+            justify-content: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body style="background-color: grey;">
+    <h1>Todo using DOM Manipulation of States & Components</h1>
+    <input type="text" placeholder="Enter Your todo" style="display: flex; justify-content: center; height: 30px; width: 99%;"></input>
+    <button class="search"onclick="addTodo()">Add todo!</button>
+    <button class="search" onclick="deleteLastTodo()">Delete first todo</button>
+    <button class="search"  onclick="deleteFirstTodo()">Delete last todo</button>
+    
+    <div id="todos"></div>
+
+
+    <script>
+      let todos = [];       //empty array initilize krwa liye 
+      function addTodo() {
+        todos.push({
+          title: document.querySelector("input").value
+        })
+        render()
+      }
+  
+      function deleteLastTodo() {
+        todos.splice(todos.length - 1, 1) // remove the last element from the arr - here it will slice from 2nd last element to last element
+        render()
+      }
+  
+  
+      function deleteFirstTodo() {
+        todos.splice(0, 1) // remove the last element from the arr - it will remove / slice from 0 to 1 element i.e first one
+        render()
+      }
+  
+  
+      function createTodoComponent(todo) {
+        const div = document.createElement("div");
+        const h1 = document.createElement("h1");
+        const button = document.createElement("button");
+        button.innerHTML = "Delete"     //yeh new todos jo add hue uske bagal wale button mein delete lane ke liye 
+        h1.innerHTML = todo.title;
+        div.append(h1)
+        div.append(button)
+        return div
+      }
+  
+      // react 
+      function render() {
+        document.querySelector("#todos").innerHTML = "";        //idhar sabse pehle pure todos k inner html ko blank kr dena after we will push new ones 
+        for (let i = 0; i < todos.length; i++) {
+          const element = createTodoComponent(todos[i]);
+          document.querySelector("#todos").appendChild(element)
+        }
+      }
+  
+    </script>
+</body>
+</html>
