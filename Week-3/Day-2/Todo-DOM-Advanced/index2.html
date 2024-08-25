@@ -1,9 +1,11 @@
+<!-- Alternative method for the previous one where we can add functionality into delete button of the todo! -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo</title>
+    <title>Todo 2</title>
     <style>
         .search{
             display: inline;
@@ -30,7 +32,7 @@
 
 
     <script>
-      let todos = [];       //empty array initilize krwa liye 
+      let todos = [];  
       function addTodo() {
         todos.push({
           title: document.querySelector("input").value
@@ -39,38 +41,40 @@
       }
   
       function deleteLastTodo() {
-        //todos.splice(todos.length - 1, 1) // remove the last element from the arr - here it will slice from 2nd last element to last element
         todos.pop()
         render()
       }
   
   
       function deleteFirstTodo() {
-        todos.splice(0, 1) // remove the last element from the arr - it will remove / slice from 0 to 1 element i.e first one
+        todos.splice(0, 1)
+        render()
+      }
+      
+
+      function deleteTodo(index){
+
+        todos.splice(index,1)
         render()
       }
   
-  
-      function createTodoComponent(todo) {
+      function createTodoComponent(todo, index) {
         const div = document.createElement("div");
         const h1 = document.createElement("h1");
         const button = document.createElement("button");
-        button.innerHTML = "Delete"     //yeh new todos jo add hue uske bagal wale button mein delete lane ke liye 
+        button.innerHTML = "Delete" 
+        button.setAttribute("onclick", "deleteTodo(" + index + ")");    //idhr onclick uspe aise use kiye hai aur index ko pass krwa diye hai jo ki render mein hai aur yeh then deletetodo ko cll kr rha hai
         h1.innerHTML = todo.title;
         div.append(h1)
         div.append(button)
-        button.onclick = function() {
-            div.remove();
-        };
-
         return div
       }
   
       // react 
       function render() {
-        document.querySelector("#todos").innerHTML = "";        //idhar sabse pehle pure todos k inner html ko blank kr dena after we will push new ones 
+        document.querySelector("#todos").innerHTML = ""; 
         for (let i = 0; i < todos.length; i++) {
-          const element = createTodoComponent(todos[i]);
+          const element = createTodoComponent(todos[i], i);         //yeh todo index bhi return kr rha hai
           document.querySelector("#todos").appendChild(element)
         }
       }
