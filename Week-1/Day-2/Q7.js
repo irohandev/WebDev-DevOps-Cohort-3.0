@@ -3,8 +3,8 @@ function greet(username){
     console.log("Hi Mr. " + username.name + " your age is " + username.age);    
 }
 let username = {
-    name: "Gaurav",
-    age: 22,
+    name: "XYZ",
+    age: 99,
     gender: "Male",
 };
 greet(username);

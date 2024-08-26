@@ -1,10 +1,10 @@
 // Also tell the user if they are legal to vote or not.
 const user = [{
-    name: "Gaurav",
-    age: 12
+    name: "ABC",
+    age: 10
 },{
-    name: "Raghav",
-    age: 29
+    name: "XYZ",
+    age: 20
 }];
 
 function isVote(user){

@@ -1,19 +1,19 @@
 // Create a function that takes an array of objects as input, and returns the users whose age > 18 and are male
 
 const users=[{
-    name:"Gaurav",
+    name:"ABC",
     age:22,
     gender:"male"
 },{
-    name:"Ananya",
+    name:"XYZ",
     age:21,
     gender:"female"
 },{
-    name:"Modi Ji",
+    name:"DEF",
     age:17,
     gender:"male"
 },{
-    name:"Rohan",
+    name:"PQR",
     age:20,
     gender:"male"
 }]

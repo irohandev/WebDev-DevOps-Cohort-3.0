@@ -12,7 +12,7 @@ var isStudent = true;
 // console.log(isStudent);
 
 isStudent = 29
-isStudent = "Singh";
+isStudent = "PQR";
 
 // console.log(isStudent);
 
