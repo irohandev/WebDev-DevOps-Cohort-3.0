@@ -5,16 +5,25 @@
 */
 
 function isAnagram(str1, str2) {
-  const sortedstr1 = str1.sort()
-  const sortedstr2 = str2.sort()
+  const sortedstr1 = str1.toLowerCase().split('').sort().join('');
+  const sortedstr2 = str2.toLowerCase().split('').sort().join('');
+
   if (sortedstr1==sortedstr2){
-    console.log("True");
+    return true;
     
   }
   else{
-    console.log("False");
+    return false;
     
   }
 }
+const a = isAnagram("rohan","ohran")
+console.log(a);
 
-module.exports = isAnagram;
+
+// Note:
+// String ko direct sort krne k liye koi function nahi.
+// Str ko lowercase kiye after that we split it which converts the string to array.
+// After that array ke pass sorting method hota we will sort with that. 
+// After that hm usko join krwa diye.
+// Then woh string mein convert ho jta phr usko sortedstr1 se sortedstr2 ko compare krwa diye. 
