@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Layout-1</title>
+    <style>
+        .container{
+            width: 1200px;
+            margin: 0 auto;
+            display: grid;      /*Yeh flex ke better alternative hai*/
+            grid-template-columns: 1fr 2fr;     /*ispe hmlg btaye grid ko 1fraction k space dena 1st div ko 2fraction dena 2nd div ko! */
+            gap: 1px;       /*And this add the gapping of 1px between both div*/
+        }
+        .left{
+            background-color: red;
+        }
+        .right{
+            background-color: blue;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <h1>
+                Left
+            </h1>
+        </div>
+        <div class="right">
+            <h1>
+                Right
+            </h1>
+        </div>
+    </div>
+    
+</body>
+</html>
