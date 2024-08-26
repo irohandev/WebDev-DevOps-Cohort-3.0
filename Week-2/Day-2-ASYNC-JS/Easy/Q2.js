@@ -13,4 +13,6 @@ function Stopwatch() {
 
 setTimeout(Stopwatch, 1000);
 
+
+//Note:
 //Kind of recursion ke jaise we are implementing setTimeout as asetInterval function.
