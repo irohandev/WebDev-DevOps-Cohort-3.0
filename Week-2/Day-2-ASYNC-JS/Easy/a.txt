@@ -1,2 +1,2 @@
-Hello form a.txt file 
-This file is used for Q3 & Q4
+Hello from a.txt 
+This file is used in Q3 
