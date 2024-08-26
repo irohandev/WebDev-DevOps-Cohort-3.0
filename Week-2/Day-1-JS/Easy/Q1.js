@@ -23,7 +23,7 @@ console.log(a);
 
 // Note:
 // String ko direct sort krne k liye koi function nahi.
-// Str ko lowercase kiye after that we split it which converts the string to array.
+// Str ko lowercase kiye after that we use split function to split it which converts the string to array.
 // After that array ke pass sorting method hota we will sort with that. 
 // After that hm usko join krwa diye.
 // Then woh string mein convert ho jta phr usko sortedstr1 se sortedstr2 ko compare krwa diye. 
