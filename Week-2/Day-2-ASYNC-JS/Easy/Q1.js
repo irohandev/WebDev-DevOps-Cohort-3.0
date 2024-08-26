@@ -9,3 +9,7 @@ function Stopwatch() {
 }
 
 setInterval(Stopwatch, 1000);
+
+// setInterval - this will call the function after every 1 sec
+// setTimeout - this will call the function only 1 time after a second
+// Here ctr is initialized with 0 and we took it inside the function and incrementing its value and every 1 sec the setInterval function is calling it.
