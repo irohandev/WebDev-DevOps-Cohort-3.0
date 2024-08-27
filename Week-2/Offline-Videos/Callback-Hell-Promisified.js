@@ -1,4 +1,4 @@
-// Q: Write code using promisified setTimeout using 
+// Q: Write code using promisified setTimeout 
 // 1.logs hi after 1 second
 // 2.logs hello 3 seconds after step 1
 // 3.logs heyy there 5 seconds after step 2
