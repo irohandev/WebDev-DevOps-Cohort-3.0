@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Layout-2</title>
+    <style>
+        .container{
+            width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;     
+            gap: 1px;       
+        }
+        .left{
+            background-color: red;
+        }
+        .right{
+            background-color: blue;
+        }
+        .right-col{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <div>
+                <h1> Top - Left</h1>
+            </div>
+            <div>
+                <h1> Bottom - Left</h1>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right-col">
+                <h3>COL 1</h3>
+                <h3>COL 2</h3>
+                <h3>COL 3</h3>
+                <h3>COL 1</h3>
+                <h3>COL 2</h3>
+                <h3>COL 3</h3>
+                <h3>COL 1</h3>
+                <h3>COL 2</h3>
+                <h3>COL 3</h3>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
