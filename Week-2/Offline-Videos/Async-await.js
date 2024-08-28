@@ -12,7 +12,6 @@ function setTimeoutPromisified(duration){
     })
 }
 
-
 async function solve(){
     
     await setTimeoutPromisified(1000)       
