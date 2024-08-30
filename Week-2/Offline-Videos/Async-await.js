@@ -24,7 +24,6 @@ async function solve(){
     console.log("Heyy");
         
 }
-
 solve();            //Here we need to call solve() function..Otherwise the function will not execute
 
 console.log("Outside the Solve block");
