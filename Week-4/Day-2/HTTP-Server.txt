@@ -10,3 +10,9 @@ Notes:
 
 4. IPs - Every domain that we see, actually has an underlying IP that it `resolves` to. You can check the ip by running the `ping` command.
 5. Ports - Port is a virtual point that manages network connections and directs data to a specific service. Ports are software-based and managed by a computer's operating system
+6. Methods - HTTP methods are used to specify the type of action that the client wants to perform on a resource on the server.
+        Common methods
+            i. GET -  Retrieve data from a server. (Get my TODOS)
+            ii. POST - Submit data to be processed by a server. (Create a TODO)
+            iii. PUT - Update or create a resource on the server (Update my todo)
+            iv. DELETE - Remove a resource from the server. (Delete my todo)
