@@ -1,0 +1,12 @@
+
+Notes:
+
+1. HTTP Protocols - An HTTP request is a message sent by a client to a server to trigger an action, and HTTP is the Hypertext Transfer Protocol that defines how data is exchanged between a client and server on the internet
+2. Request response model - The request-response model is a fundamental communication pattern. It describes how data is exchanged between a `client` and a `server` or between two systems.
+3. Domain names - The way to reach a sever is through its `Domain name` . For example: 
+        i.google.com
+        ii. app.100xdevs.com
+        iii. x.com
+
+4. IPs - Every domain that we see, actually has an underlying IP that it `resolves` to. You can check the ip by running the `ping` command.
+5. Ports - Port is a virtual point that manages network connections and directs data to a specific service. Ports are software-based and managed by a computer's operating system
