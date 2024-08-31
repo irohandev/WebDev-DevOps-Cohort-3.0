@@ -21,3 +21,4 @@ Notes:
         ii. 300 series (Redirection)
         iii. 400 series (Client Error)
         iv. 500 series (Server Error)
+9. Body - In HTTP communications, the body (or payload) refers to the part of an HTTP message that contains the actual data being sent to the server. It is usually `JSON` data that is transferred to the server.
