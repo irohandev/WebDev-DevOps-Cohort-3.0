@@ -1,0 +1,23 @@
+Notes:
+1. Here we learned about Node.js and Bun, how how js code can execute in browser as well as in our local system as node.js help us doing this so!
+2. We create a 'package.json' file using this command 'pm init -y' in teminal.
+3. After that we had created a new file named 'index.mjs' advanced version of js file
+4. We install another dependcy i.e 'chalk' using command 'npm install chalk' ....an extra node module is added here after installing is completed.
+5. Node.js provides you some `packages` out of the box. Some common ones include :
+        i. fs - Filesystem
+        ii. path - Path related functions
+6. External packages - These are packages written and maintained by other people. You just use their work in your project. For example : 
+        i. Express
+        ii. chalk
+7. Whenever we are going to push codes in github we will ignore the node module as its too heavy rather we will puch the folder where dependencies are included and if we just type 'node install' it will just install all the dependencies by itself from the dependencies file present.
+
+
+Notes for package.json file :
+1."name": "day-1", - Name of website/library/app       
+2. "version": "1.0.0", - current version
+3. "main": "index.js", - Entrypoint
+4. "scripts": {             
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+    - Developer speciifed script - isko hm apne hisb se likh skte like test ke jgah start and us start pe - "start": node index.mjs; jo jaise hi npm run start krenge toh woh file run hoga agar hmlg ekdm sahi folder mein honge toh!
+
