@@ -31,5 +31,9 @@ program.command('count')            //yeh program bnaye hai jo..count command bn
       }
     });
   });
-  
+
 program.parse();
+
+
+// Note:
+// To execute yeh command we have type "node THIS_FILE_NAME COMMAND_NAME NAME_OF_THE_OTHER_FILE_JISPE_COMMAND_OPERATE_KREGA" ...EX - 'node injex.js count a.txt'
