@@ -15,3 +15,9 @@ Notes:
         ii. POST - Submit data to be processed by a server. (Create a TODO)
         iii. PUT - Update or create a resource on the server (Update my todo)
         iv. DELETE - Remove a resource from the server. (Delete my todo)
+7. JSON Data - JavaScript Object Notation (JSON) is a standard text-based format for representing structured data based on JavaScript object syntax. 
+8. Status codes - HTTP status codes are three-digit numbers returned by a server to indicate the outcome of a client’s request. They provide information about the status of the request and the server's response. Example: 
+        i. 200 series (Success)
+        ii. 300 series (Redirection)
+        iii. 400 series (Client Error)
+        iv. 500 series (Server Error)
