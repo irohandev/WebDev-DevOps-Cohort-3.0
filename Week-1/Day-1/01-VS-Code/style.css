@@ -1,0 +1,137 @@
+body{
+    background-color: black;
+}
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 130px;
+    padding-right: 150px;
+    padding-top: 5px;
+}
+.wrapper a{
+    text-decoration: none;
+    color: #9d9d9d;
+}
+a{
+    font-size: 1.05em;
+    font-weight: 500;
+    font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif;
+    padding-inline: 7px;
+}
+a:hover{
+    color: white;
+}
+.nav-bar{
+    display: flex;
+    align-items: center;
+}
+.icon{
+    width: 26px;
+    height: 26px;
+}
+#main{
+    color: white;
+    font-size: 1.3em;
+    font-weight: 600;
+    font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif;
+    padding-left: 10px;
+}
+.search-container {
+    position: relative;
+}
+.search-container svg {
+    position: absolute;
+    top: 9px;
+    left: 8px;
+    fill: #9d9d9d;
+}
+.search-container input{
+    padding-left: 32px;
+    padding-block: 7px;
+    margin-right: 5px;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #323232;
+    background-color: black;
+}
+.search-container button{
+    background-color: #0078d4;
+    color: white;
+    cursor: pointer;
+    padding-inline: 12px;
+    padding-block: 7px;
+    border-radius: 4px;
+    border-style: none;
+    font-weight: 500;
+    font-size: 1em;
+    font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif;
+}
+.banner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 80px;
+}
+.banner a{
+    color: #4daafc;
+}
+.banner img{
+    width: 800px;
+    height: 500px;
+}
+.new-version{
+    color: #9d9d9d;
+    font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif;
+    font-weight: 500;
+    font-size: 0.9em;
+    margin-top: 30px;
+}
+.banner-part-2{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    align-items: center;
+    gap: 7em;
+}
+.div-1{
+    display: inline-block;
+    color: #9d9d9d;
+    font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif;
+    font-weight: 500;
+    font-size: 0.9em;
+    border-style: solid;
+    border-radius: 25px;
+    border-width: thin;
+    border-color: #323232;
+    background-color: rgba(255,255,255,0.12);
+    padding-inline: 10px;
+    padding-block: 7px;
+}
+.banner-part-2 h1{
+    color: white;
+    font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif;
+    font-weight: 600;
+    font-size: 3.4em;
+}
+.banner-part-2 button{
+    background-color: #0078d4;
+    color: white;
+    font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+    border-style: none;
+    border-radius: 4px;
+    padding-inline: 20px;
+    padding-block: 10px;
+}
+.para-1{
+    color: #9d9d9d;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+.para-2{
+    color: #9d9d9d;
+    font-size: 0.7em;
+    font-family: "Segoe UI","Helvetica Neue",Arial,sans-serif;
+}
