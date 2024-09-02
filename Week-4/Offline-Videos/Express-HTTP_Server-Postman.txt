@@ -1,0 +1,9 @@
+Notes:
+1. Whenever sending HTTP server req using express we have to install the node_modules and then we execute the file typing "node filename".
+2. To get the output of the excuted file we will search "localhost:3000"
+3. localhost:3000 and localhost:3000/ both are same.
+4. If we want to get the output of excuted file on your mobile then..following are the steps:
+        - Make sure both pc and mobileis connected with same connection i.e same wifi
+        - Type "ipcongif/all" in terminal to get you ip of pc and choose the default ip of you system
+        - Type the ip address in you mobile browser and add ":3000" in the end ..its the port on which the local development server is listening. Ex - 192.162.198:3000
+        - You will get your output 
