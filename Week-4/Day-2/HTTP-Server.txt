@@ -4,7 +4,7 @@ Notes:
 
 2. Request response model - The request-response model is a fundamental communication pattern. It describes how data is exchanged between a `client` and a `server` or between two systems.
 
-3. Domain names - The way to reach a sever is through its `Domain name` . For example: 
+3. Domain names - The way to reach a sever is through its `Domain name`. For example: 
         i.google.com
         ii. app.100xdevs.com
         iii. x.com
