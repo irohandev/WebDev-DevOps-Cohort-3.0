@@ -21,31 +21,29 @@ setInterval(() => {
 
 
 app.use(function(req, res,next){
-    const userId = req.headers["user-id"]
-    if(numberOfRequestsForUser[userId]>5){
-        numberOfRequestsForUser[userId]++
-        if(numberOfRequestsForUser[userId]>5){
+    const userId = req.headers["user-id"]           //isse userid le lega server
+    if(numberOfRequestsForUser[userId]>5){          //This will check ki rate of request 5 se jyada hai ki nahi
+        numberOfRequestsForUser[userId]++           //if 5 se jyada hai toh usko aur increase kr do
+        if(numberOfRequestsForUser[userId]>5){      //nested if se pta chlega agr woh 5 se jyda tha toh ab 6 se ho gya.. aur 6 toh 5 se jyada ek error status show kro
             res.status(404).send("No Entry")
         }else{
-            next();
+            next();                                 // call the next middleware function in the stack
         }
-    }else{
+    }else{                                          //aur if 5 se kam rha toh object waise hi empty tha kyuki globally empty initize krwaye the toh ab usko 1 se initialize kro aur next ko call kr do iske baad
         numberOfRequestsForUser = 1
+        next();
     }
-    next();
+    
 })
 
 // create a route for GET request on /user path
 app.get("/user", function (req, res) {
-    // return a json response with name as Rohan
     res.status(200).json({ name: "Rohan" });
 });
 
 // create a route for POST request on /user path
 app.post("/user", function (req, res) {
-    // return a json response with message "created dummy user
     res.status(200).json({ msg: "created dummy user" });
 });
 
-// Start the server on port 3000
 app.listen(3000);
