@@ -5,13 +5,11 @@ Your task is to create a global middleware (app.use) which will maintain a count
 requests made to the server in the global requestCount variable
 */
 
-// import express module using require function and store it in express variable
+
 const express = require("express");
 
-// create an express application using express function
 const app = express();
 
-// create a global variable requestCount and assign it a value of 0
 let requestCount = 0;
 
 // create a middleware function that increments the requestCount by 1 for every request made to the server
@@ -31,7 +29,7 @@ app.get("/user", function (req, res) {
 
 // create a route for POST request on /user path
 app.post("/user", function (req, res) {
-    // return a json response with message "created dummy user
+    // return a json response with message "created dummy user"
     res.status(200).json({ msg: "created dummy user" });
 });
 
