@@ -7,7 +7,7 @@ function isOldEnoughMiddleware(req,res,next){
     if (age>=15){
         next();     //jis port pe route pe server start hua yeh if condition next se us get pe indicate kr rha like localhost:3000/ride1?age=20 - yeh ride1 wle ko signal de rha hai 
     }else{
-        req.json({
+        res.json({
             msg:"Sorry you are underage !"
         })
     }
