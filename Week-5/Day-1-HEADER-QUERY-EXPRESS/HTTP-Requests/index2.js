@@ -8,6 +8,9 @@
 // 4. http://localhost:3000/subtract/20/15
 
 
+// Same code but in this we will be using dynamic parameters
+
+
 
 const express = require("express");
 
