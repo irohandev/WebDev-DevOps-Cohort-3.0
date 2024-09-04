@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API using Axioms</title>
+
+    <!-- Axioms Library - Using this is 200% jruri-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+</head>
+<body>
+    <h1>Fethching API using axios! </h1>
+    <div id="posts"></div>
+    <script>
+        async function getRecentPost(){
+            // yeh data fetch krega from the server using the axios and get,post,put etc method uske sath mein hi honge fetch ke jaise alg nhi likhna pdta hai..            
+            const response = await axios.get("https://jsonplaceholder.typicode.com/posts/1")
+            const data = response.data;     //yeh response se data ko liya 
+            document.getElementById("posts").innerText = JSON.stringify(data);      //yeh sare elemet ko JSON ko string ke form mein bana ke output dega 
+        }
+        getRecentPost();
+    </script>
+
+</body>
+</html>

@@ -7,4 +7,4 @@ Difference between fetch and axios:
     - Axios 
             - Syntax 
             - Yeh bhi fetch karta hai but ispe await axios.METHOD_NAME likh diya jta jisse code thora kam complex aur less rehta hai 
-            - but ispe header pe <script> src = "   LINK    "</script> yeh add krna pdta jisse kch KB of code increase ho jta hai 
+            - but ispe header pe <script src = "   LINK    "></script> yeh add krna pdta jisse kch KB of code increase ho jta hai 
