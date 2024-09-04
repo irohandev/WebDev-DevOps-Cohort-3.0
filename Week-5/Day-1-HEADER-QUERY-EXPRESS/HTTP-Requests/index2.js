@@ -10,8 +10,6 @@
 
 // Same code but in this we will be using dynamic parameters
 
-
-
 const express = require("express");
 
 const app = express();
