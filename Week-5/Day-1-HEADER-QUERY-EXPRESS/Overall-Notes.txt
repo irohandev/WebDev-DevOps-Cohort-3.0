@@ -1,0 +1,5 @@
+Notes:
+1. Headers - HTTP headers are key-value pairs sent between a `client` (like a web browser) and a `server` in an HTTP request or response. They convey metadata about the request or response, such as content type, auth information etc. Common headers -
+        i. Authorization (Sends the user auth information)
+        ii. Content-Type - Type of information client is sending (json, binary etc)
+        iii. Referer - Which URL is this request coming from
