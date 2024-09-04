@@ -24,3 +24,15 @@
 
 </body>
 </html>
+
+
+<!-- Notes:
+Suppose jaise yeh axios jisko fetch kr rha hai woh uspe bs ek object if woh array of object rha then what will be do?
+Sol -       async function getRecentPost(){         
+                const response = await axios.get("https://jsonplaceholder.typicode.com/posts/1")
+                const arr = response.data;
+                for(let i=0; i<arr.length; i++){
+                    document.getElementById("posts").innerText += ("<div>" + arr[i].title "</div>");    yeh div isiye add liya jisse woh post wle div mein jaye toh sare tittle ek ek div ke under rhe jisse placing sahi se ho jaye
+                }                
+            }
+            getRecentPost(); -->
