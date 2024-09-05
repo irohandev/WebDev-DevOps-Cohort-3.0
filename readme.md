@@ -1,4 +1,4 @@
-# 🚀 100xDevs Cohort 3.0 - MERN Stack + DevOps 🚀
+# 🚀 100xDevs Cohort 3.0 - Web Dev + DevOps 🚀
 
 Welcome to the **100xDevs Cohort 3.0** by **Harkirat Singh**!  
 This repository is your ultimate guide to mastering:
