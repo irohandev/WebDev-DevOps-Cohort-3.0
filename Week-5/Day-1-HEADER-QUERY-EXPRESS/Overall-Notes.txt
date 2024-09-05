@@ -4,3 +4,5 @@ Notes:
         ii. Content-Type - Type of information client is sending (json, binary etc)
         iii. Referer - Which URL is this request coming from
 
+
+
