@@ -1,0 +1,5 @@
+Notes:
+1. Middleware: In Express.js, middleware refers to functions that have access to the request object (`req`), response object (`res`), and the `next` function in the application's request-response cycle. Middleware functions can perform a variety of tasks, such as -
+    i. Modifying the request or response objects.
+    ii. Ending the request-response cycle i.e it can be used for authentication. 
+    iii. Calling the next middleware function in the stack.
