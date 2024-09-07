@@ -3,3 +3,7 @@ Notes:
     i. Modifying the request or response objects.
     ii. Ending the request-response cycle i.e it can be used for authentication. 
     iii. Calling the next middleware function in the stack.
+
+
+2. Commonly used middlewares : Through your `journey of writing express servers` , we’ll find some commonly available (on npm) middlewares that we might want to use - 
+    - express.json: The `express.json()` middleware is a built-in middleware function in Express.js used to parse incoming request bodies that are formatted as JSON. This middleware is essential for handling JSON payloads sent by clients in POST or PUT requests.
