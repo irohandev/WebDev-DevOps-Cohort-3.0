@@ -15,9 +15,6 @@
             const a = document.getElementById("a").value;
             const b = document.getElementById("b").value;
 
-            // Log the values
-            // console.log(a, b);
-
             // Send a POST request to the server 
             const response = await axios.post("http://localhost:3001/sum", {
                 a: a,
