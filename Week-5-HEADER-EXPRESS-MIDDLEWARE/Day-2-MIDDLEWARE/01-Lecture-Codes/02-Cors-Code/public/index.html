@@ -10,15 +10,23 @@
     <button onclick="sendRequest()">Find Sum</button>
 
     <script>
-        function sendRequest() {
-            const a = document.getElementById("a");
-            const b = document.getElementById("b");
-            axios.post("localhost:3000/sum", {
-                a: a,
-                b: b
-            })
-        }
+        async function sendRequest() {
+            // Get the values from the input fields
+            const a = document.getElementById("a").value;
+            const b = document.getElementById("b").value;
 
+            // Log the values
+            // console.log(a, b);
+
+            // Send a POST request to the server 
+            const response = await axios.post("http://localhost:3001/sum", {
+                a: a,
+                b: b,
+            });
+
+            // Log the response
+            console.log(response.data);
+        }
     </script>
     
 </body>
