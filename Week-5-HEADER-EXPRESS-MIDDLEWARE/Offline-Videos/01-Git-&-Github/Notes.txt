@@ -1,6 +1,6 @@
 Git and GitHub Detailed Notes - 
 
-Visit here too for details :
+Visit here for details : (ATLASSIAN WEBSITE)
     - Link : https://www.atlassian.com/git/tutorials/what-is-version-control
 
 1. Introduction to Git:
