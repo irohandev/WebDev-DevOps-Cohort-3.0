@@ -1,5 +1,8 @@
 Git and GitHub Detailed Notes - 
 
+Visit here too for details :
+    - Link : https://www.atlassian.com/git/tutorials/what-is-version-control
+
 1. Introduction to Git:
 
     - Git is a distributed version control system used to track changes in source code during software development. It allows multiple developers to collaborate on a project and keeps track of the history of changes.
