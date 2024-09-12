@@ -55,10 +55,39 @@ app.post("/signin", (req, res) => {
         res.status(403).send({
             message:"Invalid username or password"
         })
-    }
-
-    console.log(users);
-    
+    }    
 });
 
+app.get("/me", function(req,res){               //Created an authenticated EP which  returns the user their information only if they send their token
+    const token = req.header.token              //Jo meta data mein hmlg kuch kuch cookies snd krte hai wahi header ke andar hoga woh token bhi jyega 
+    let foundUser = null;
+
+    for (let i = 0; i < users.length; i++) {
+        if(users[i].token == token){
+            foundUser =users[i]
+        }            
+    }
+
+    if(foundUser){
+        res.json({
+            username: foundUser.username,
+            password: foundUser.password
+        })
+    }
+    else{
+        res.json({
+            message:"Token Invalid"
+        })
+    }
+});
+
+
 app.listen(3000);
+
+
+/*
+Notes:
+- Phle postman mein jayenge udhar localhost:3000/signup mein post req se do teen input denge username password ka body mein json object ke andar..
+- Phir localhost:3000/signin mein jaynge aur post req krke uspe post req pe jo input diye gye username password jo diye hai usse usko snd req krenge toh ek token milega 
+- phir localhost:3000/me mein jaynge aur then headers pe jayenge aur add krenge token ko aur jo token generate kiye hue hai usko copy paste kr denge headers mein token mein aur req send krenge jisse woh jis bhi username oassword ka token hai woh mko output mein return krega 
+*/
