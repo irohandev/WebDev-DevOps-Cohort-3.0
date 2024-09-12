@@ -1,0 +1,4 @@
+Notes:
+
+What is authentication?
+The process of letting users `sign in` / `sign out` of your website. Making sure your `routes` are protected and users can only get back their `own` data and not the data from a different user
