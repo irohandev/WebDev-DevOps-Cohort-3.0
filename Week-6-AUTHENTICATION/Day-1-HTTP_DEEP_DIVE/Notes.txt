@@ -1,4 +1,35 @@
 Notes:
 
-What is authentication?
-The process of letting users `sign in` / `sign out` of your website. Making sure your `routes` are protected and users can only get back their `own` data and not the data from a different user
+1. What is authentication?
+    - The process of letting users `sign in` / `sign out` of your website. Making sure your `routes` are protected and users can only get back their `own` data and not the data from a different user.
+    - It is the process of verifying the identity of a user, ensuring they are who they claim to be. This is typically achieved through the use of credentials, such as usernames and passwords. It involves letting users sign in/sign out of your website, ensuring that routes are protected, and that users can only access their own data and not data from other users.
+
+
+2. Why Use Authentication?
+    - Authentication is crucial for protecting sensitive information and restricting access to authorized users. By implementing authentication mechanisms, you can ensure that only authenticated users can access certain features or resources within your application.
+
+
+3. Authentication Workflow (Bank Example)
+    - When you go to open a bank account:
+        - You go to the bank and provide your information.
+        - The bank issues you a cheque book.
+        - Every time you want to send money, you write it in the cheque book and send it to the bank.
+        - This is how the bank identifies you.
+
+
+4. What is Token Authentication?
+    - Token authentication works by generating a random string (token) for the user when they authenticate. The token is included in the HTTP Authorization header on each subsequent request and is validated by checking the database on each request. The benefit of token authentication is its simplicity, as it keeps user credentials secure. The credentials are only sent to the server once and are never stored or cached for future requests, ensuring their security.
+
+
+5. What is JWT Token (JSON Web Token)?
+    -JWT is a different approach that uses encryption and hashing techniques to validate the token instead of database checks. It starts similarly to token authentication:
+        - The user sends their username and password, which are validated against the database.
+        - Once validated, the server generates a token based on a secret key known only to the server.
+        - The client includes this token in the HTTP headers of subsequent requests. The server validates it using the secret key without accessing the database.
+        - The token usually converts to a JSON object with details about the authenticating user (typically a user ID), so the server can identify the user without querying the database.
+        - Each token is valid for a fixed period, after which the server must use a refresh token to request a new one. This allows the server to block access if needed.
+        - The benefit of JWT is that it is more scalable, requiring fewer database hits. However, it is more complex to implement.
+
+6. Tokens vs. JWTs
+    - Stateful tokens require storing token data in a variable or database. This necessitates a database request every time the user accesses an authenticated endpoint, leading to potential inefficiencies.
+    - JWTs are compact and self-contained, representing information between two parties. They are stateless, containing all the information needed to authenticate a request within the token itself. This means the server does not need to store session data, as all necessary data is included in the token.

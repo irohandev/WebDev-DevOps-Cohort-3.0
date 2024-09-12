@@ -62,6 +62,7 @@ app.get("/me", function(req,res){               //Created an authenticated EP wh
     const token = req.header.token              //Jo meta data mein hmlg kuch kuch cookies snd krte hai wahi header ke andar hoga woh token bhi jyega 
     let foundUser = null;
 
+    // Searches the users array for a user whose token matches the token from the request header. If a match found, that user object is stored in foundUser
     for (let i = 0; i < users.length; i++) {
         if(users[i].token == token){
             foundUser =users[i]
