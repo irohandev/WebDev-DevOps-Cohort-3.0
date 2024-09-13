@@ -59,7 +59,7 @@ app.post("/signin", (req, res) => {
 });
 
 app.get("/me", function(req,res){               //Created an authenticated EP which  returns the user their information only if they send their token
-    const token = req.header.token              //Jo meta data mein hmlg kuch kuch cookies snd krte hai wahi header ke andar hoga woh token bhi jyega 
+    const token = req.headers.token              //Jo meta data mein hmlg kuch kuch cookies snd krte hai wahi header ke andar hoga woh token bhi jyega 
     let foundUser = null;
 
     // Searches the users array for a user whose token matches the token from the request header. If a match found, that user object is stored in foundUser

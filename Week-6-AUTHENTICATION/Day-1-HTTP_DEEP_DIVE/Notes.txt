@@ -22,13 +22,8 @@ Notes:
 
 
 5. What is JWT Token (JSON Web Token)?
-    -JWT is a different approach that uses encryption and hashing techniques to validate the token instead of database checks. It starts similarly to token authentication:
-        - The user sends their username and password, which are validated against the database.
-        - Once validated, the server generates a token based on a secret key known only to the server.
-        - The client includes this token in the HTTP headers of subsequent requests. The server validates it using the secret key without accessing the database.
-        - The token usually converts to a JSON object with details about the authenticating user (typically a user ID), so the server can identify the user without querying the database.
-        - Each token is valid for a fixed period, after which the server must use a refresh token to request a new one. This allows the server to block access if needed.
-        - The benefit of JWT is that it is more scalable, requiring fewer database hits. However, it is more complex to implement.
+    - JWTs, or JSON Web Tokens, are a compact and self-contained way to represent information between two parties. They are commonly used for authentication and information exchange in web applications.
+    - JWTs are Stateless : JWTs contain all the information needed to authenticate a request, so the server doesn’t need to store session data. All the `data` is stored in the token itself.
 
 6. Tokens vs. JWTs
     - Stateful tokens require storing token data in a variable or database. This necessitates a database request every time the user accesses an authenticated endpoint, leading to potential inefficiencies.
