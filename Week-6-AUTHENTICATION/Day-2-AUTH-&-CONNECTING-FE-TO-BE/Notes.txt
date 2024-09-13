@@ -1,0 +1,8 @@
+Notes:
+
+1. Encryption vs Encoding {As JWT uses Encoding not Encryption}:
+    - Encryption and encoding are two different concepts. 
+        - Encryption is used to keep data secret and protect it from unauthorized access. It works by changing the data into a secret code using a key, and only someone with the correct key can decode it back to its original form. This ensures that sensitive information stays confidential.
+        - On the other hand, encoding is not for security. It simply changes data into a different format to make it easier to transfer or store. For example, Base64 encoding is commonly used to convert data into a text format. Anyone can decode it back, so it’s not meant to keep data safe—just to make it easier to handle.
+
+    - JWT (JSON Web Token) uses encoding to format its data, like the header and payload, but it doesn’t encrypt the data. It also uses a secret key to sign the token, ensuring that the data hasn’t been tampered with. However, JWT’s encoding is for structure, not security, and the signature verifies the token’s integrity.
