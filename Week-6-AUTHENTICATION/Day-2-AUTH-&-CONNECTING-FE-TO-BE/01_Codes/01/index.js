@@ -50,6 +50,26 @@ app.post("/signin", function(req, res){
 
 })
 app.get("/me", function(req, res){
+    const token = req.headers.token;
+
+    //const decodedData = jwt.decode(token)                 yeh data ko decode krta hai verify nahi ..jiske wajh se yeh nahi krna hai hmesa verify  
+    const decodedData = jwt.verify(token, JWT_SECRET);
+
+    if(decodedData.username){
+        let foundUser = null;
+
+        for (let i = 0; i< users.length; i++) {
+            if(users[i].username === decodedData.username){
+                foundUser = users[i]
+            }
+        }
+
+        res.json({
+            username: foundUser.username,
+            password: foundUser.password
+        })
+
+    }
 
 })
 
