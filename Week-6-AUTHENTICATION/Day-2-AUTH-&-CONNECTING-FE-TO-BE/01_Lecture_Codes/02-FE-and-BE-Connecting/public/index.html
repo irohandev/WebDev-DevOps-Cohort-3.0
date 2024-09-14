@@ -7,84 +7,123 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f0f2f5;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f2f2f2, #e0e0e0);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            color: #333;
         }
 
         .container {
             background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             padding: 20px;
-            width: 300px;
+            width: 100%;
+            max-width: 400px;
             text-align: center;
             animation: fadeIn 1s ease-in-out;
+            overflow: hidden;
         }
 
         h2 {
-            color: #333;
+            color: #007bff;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            height: 4px;
+            width: 50px;
+            background: #007bff;
+            margin: 10px auto;
+            border-radius: 2px;
         }
 
         input {
             width: calc(100% - 22px);
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
             margin-bottom: 15px;
             box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+            outline: none;
         }
 
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             background: #007bff;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.3s;
         }
 
         button:hover {
             background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background: #003d7a;
+            transform: scale(0.98);
         }
 
         #information {
             margin-top: 20px;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
             background: #f9f9f9;
+            color: #333;
+            font-size: 16px;
+            text-align: left;
         }
 
         .logout {
             margin-top: 20px;
-            padding: 10px;
+            padding: 12px;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             background: #dc3545;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.3s;
         }
 
         .logout:hover {
             background: #c82333;
+            transform: scale(1.05);
+        }
+
+        .logout:active {
+            background: #a71d2a;
+            transform: scale(0.98);
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -96,14 +135,14 @@
 <body>
     <div class="container">
         <div>
-            <h2>Signup</h2>
+            <h2>Sign Up</h2>
             <input id="signup-username" type="text" name="username" placeholder="Username">
             <input id="signup-password" type="password" name="password" placeholder="Password">
             <button onclick="signup()">Submit</button>
         </div>
         
         <div>
-            <h2>Signin</h2>
+            <h2>Sign In</h2>
             <input id="signin-username" type="text" name="username" placeholder="Username">
             <input id="signin-password" type="password" name="password" placeholder="Password">
             <button onclick="signin()">Submit</button>
