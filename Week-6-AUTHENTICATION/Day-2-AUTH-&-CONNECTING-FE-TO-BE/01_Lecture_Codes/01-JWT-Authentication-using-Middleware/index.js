@@ -91,3 +91,7 @@ app.get("/me",logger, auth, function(req, res){
 })
 
 app.listen(3000);
+
+
+// Notes:
+// - Jitne bhi middleware hote yeh sare same req aur res use krte hai...isliye hmlg line 66 mein req.username mein decodedData.username ko store kr diye hai aur ussi ko niche wle get route mein add kr diye line 82 mein jisse woh username share ho pa rha hai..so aise hi yahi se we can pass dat through the middleware to next method or the get route
