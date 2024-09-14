@@ -61,6 +61,30 @@ app.post("/signin",logger, function(req, res){
     }
 
 })
+app.post("/signin", logger, function(req, res) {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    let foundUser = null;
+
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].username === username && users[i].password === password) {
+            foundUser = users[i];
+        }
+    }
+
+    if (!foundUser) {
+        return res.status(401).json({ message: "Invalid Credentials" }); // Send 401 status for invalid credentials
+    } else {
+        const token = jwt.sign({ 
+            username
+        }, JWT_SECRET);
+        res.json({ 
+            token: token 
+        });
+    }
+});
+
 
 function auth(req, res, next) {
     const token = req.headers.token;

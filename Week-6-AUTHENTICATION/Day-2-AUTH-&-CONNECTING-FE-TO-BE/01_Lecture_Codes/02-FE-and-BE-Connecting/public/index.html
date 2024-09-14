@@ -5,29 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentication Website</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #information {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+
+        .logout {
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background: #dc3545;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .logout:hover {
+            background: #c82333;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <h2>Signup</h2>
-        <input id="signup-username" type="text" name="username" placeholder="Username">
-        <input id="signup-password" type="password" name="password" placeholder="Password">
-        <button onclick="signup()">Submit</button>
-    </div>
-    
-    <div>
-        <h2>Signin</h2>
-        <input id="signin-username" type="text" name="username" placeholder="Username">
-        <input id="signin-password" type="password" name="password" placeholder="Password">
-        <button onclick="signin()">Submit</button>
-    </div>
-    
-    <div>
-        <h2>User Information</h2>
-        <div id="information">Please sign in to view user information.</div>
-    </div>
-    
-    <div>
-        <button onclick="logout()">Logout</button>
+    <div class="container">
+        <div>
+            <h2>Signup</h2>
+            <input id="signup-username" type="text" name="username" placeholder="Username">
+            <input id="signup-password" type="password" name="password" placeholder="Password">
+            <button onclick="signup()">Submit</button>
+        </div>
+        
+        <div>
+            <h2>Signin</h2>
+            <input id="signin-username" type="text" name="username" placeholder="Username">
+            <input id="signin-password" type="password" name="password" placeholder="Password">
+            <button onclick="signin()">Submit</button>
+        </div>
+        
+        <div>
+            <h2>User Information</h2>
+            <div id="information">Please sign in to view user information.</div>
+        </div>
+        
+        <button class="logout" onclick="logout()">Logout</button>
     </div>
     
     <script>
