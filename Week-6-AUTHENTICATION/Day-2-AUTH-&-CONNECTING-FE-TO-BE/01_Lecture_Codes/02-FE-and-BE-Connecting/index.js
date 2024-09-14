@@ -14,7 +14,10 @@ function logger (req, res,next){            //yeh el logger middleware bnay jo b
     next();
 }
 
-
+//
+app.get("/", function(req, res){
+    res.sendFile(__dirname + "/public/index.html");
+})
 
 app.post("/signup",logger, function(req, res){
     const username = req.body.username;
@@ -26,9 +29,10 @@ app.post("/signup",logger, function(req, res){
         password:password
     });
     res.json({
-        meassage:"Signed in successfully!"
+        message:"Signed in successfully!"
     });
 })
+
 app.post("/signin",logger, function(req, res){
     const username = req.body.username;
     const password = req.body.password;
@@ -58,40 +62,39 @@ app.post("/signin",logger, function(req, res){
 
 })
 
-function auth(req, res, next){              //And this is the authentication middleware jaise pichle wale mein hmlog localhost:3000/me mtln get wle mein sab yeh authentication wla kaam kr rhe the jo username, password return kr rha tha yha woh kam yeh kr rha hai as a middleware 
+function auth(req, res, next) {
     const token = req.headers.token;
-    const decodedData = jwt.verify(token, JWT_SECRET);
-
-    if(decodedData.username){
-        req.username = decodedData.username;
-        next()
+    if (!token) {
+        return res.status(401).json({ message: "Token is missing" });
     }
-    else{
-        res.json({
-            message: "You are not logged in!"
-        })
+    
+    try {
+        const decodedData = jwt.verify(token, JWT_SECRET);
+        if (decodedData.username) {
+            req.username = decodedData.username;
+            next();
+        } else {
+            res.status(401).json({ message: "Invalid token" });
+        }
+    } catch (error) {
+        res.status(401).json({ message: "Failed to authenticate token" });
     }
 }
 
 
-app.get("/me",logger, auth, function(req, res){
-
-    let foundUser = null;
-
-    for (let i = 0; i< users.length; i++) {
-        if(users[i].username === req.username){             //yaha req.username kiye hai aur decodedData.username nhi kiye hai kyuki req.username middleware se pass hokr is wale get method me aa rha hai 
-            foundUser = users[i]
-        }
+app.get("/me", logger, auth, function(req, res) {
+    const foundUser = users.find(user => user.username === req.username);
+    
+    if (!foundUser) {
+        return res.status(404).json({ message: "User not found" });
     }
 
     res.json({
         username: foundUser.username,
         password: foundUser.password
-    })
-})
+    });
+});
+
 
 app.listen(3000);
 
-
-// Notes:
-// - Jitne bhi middleware hote yeh sare same req aur res use krte hai...isliye hmlg line 66 mein req.username mein decodedData.username ko store kr diye hai aur ussi ko niche wle get route mein add kr diye line 82 mein jisse woh username share ho pa rha hai..so aise hi yahi se we can pass dat through the middleware to next method or the get route
