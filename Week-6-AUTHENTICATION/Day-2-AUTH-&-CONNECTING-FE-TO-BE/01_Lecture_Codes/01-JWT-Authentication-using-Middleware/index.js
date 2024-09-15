@@ -9,7 +9,7 @@ app.use(express.json())
 const users = []
 
 
-function logger (req, res,next){            //yeh el logger middleware bnay jo bta raha hai like which req is coming to the server 
+function logger (req, res,next){            //yeh ek logger middleware bnay jo bta raha hai like which req is coming to the server 
     console.log(req.method + " - Request came !")
     next();
 }
