@@ -26,7 +26,9 @@ Notes:
         const newToken = jwt.sign(contents, secret_key)
         console.log(newToken);
 
-    - is code pe sab kuch same iske token se data ko encode krenge toh same content bhi ayega but woh verified nahi btayega kyuki secret key alag hai 
+    - is code pe sab kuch same iske token se data ko decode krenge toh same content bhi ayega but woh verified nahi btayega kyuki secret key alag hai 
+    - Whatever the token is present in jwt usko hmlg decode kr skte hai like bina secret_key diye bina but usko verify krne k liye sme secret_key ka jrurt hota hai
+    - const decodedtoken = jwt.decode(token)    <---------- bina kisi secret k hi decode kr skte hai but sign aur verify ke liye dono k liye SECRET_KEY ka need hai..without it sign aur verify possible nahi hai
 */
 
 
