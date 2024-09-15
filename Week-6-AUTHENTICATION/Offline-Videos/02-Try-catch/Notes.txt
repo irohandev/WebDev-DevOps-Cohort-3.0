@@ -1,0 +1,39 @@
+Notes:
+
+- Suppose we had created a fucntion getLength()
+    fucntion getLength(name){
+        return name.length;
+    }
+
+    const ans = getLength();        <------ idhar name provide hi nhi kiye parameter mein isliye error 
+    console.log(ans);               <------ error
+    console.log("Hi");              <------ JS kabhi bhi is line tk pahauchega hi nahi kyuki upar wle line pe error ayega so for which controll yaha tk kabhi ayega hi nahi
+
+- So to overcome this problem try catch is used.
+- If you know ki error ane ka chances are there then we should always use try catch jaise for example:
+    - In jwt.verify we know ya to kuch yeh value return krega or else yeh error dega ..so we should use try cath here.
+
+- Example of try catch:
+
+    try{
+        let a;
+        console.log(a.length);                  <----- Idhar error ayega 
+        console.log("Hello from try!")          <----- Idhar controll ayega hi nahi balki woh catch pe jyega 
+    } catch(error){
+        console.log("Hello from catch")         <----- Controll yaha aa jyega aur yeh line print krega 
+    }
+
+    console.log("Hello from outside")           <----- Catch ke statement ko print krne k baad yeh krega 
+    
+    
+    try{
+        const a = 10;
+        console.log(a);                         <----- Yeh execute hoga 
+        console.log("Hello from try!")          <----- After the above is executed yeh bhi output pe ayega aur yeh bhar wle log statement ko execute krega 
+    } catch(error){
+        console.log("Hello from catch")         <----- aur try k sara jab execute ho jyega and koi bhi error nahi ayega then it won't come here. 
+    }
+
+    console.log("Hello from outside")           <----- Try ke baad yeh print krega 
+
+- Try catch mein code run hoga hi..yeh koi chances nahi ki cod execute nhi hoga ..ispe code ya toh try wle part ka run hoga or catch k part run hoga ..but kuch toh hoga hi 
