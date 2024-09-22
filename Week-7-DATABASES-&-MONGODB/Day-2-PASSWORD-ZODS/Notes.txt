@@ -1,0 +1,8 @@
+Notes:
+
+1. Hashing:
+    - Password hashing is the practice of algorithmically turning a password into ciphertext, or an irreversibly obfuscated version of itself, as a means of blocking against the threat of password breaches.
+    - We cannot change the hashed output back into its original form.
+    - Suppose a user enters a password "MAinahibatunga" ...aur yeh password hashing algorithm ke through ek hashed text ban gya aur woh dubara login kara toh how we will know ki woh jo password is baar input de rha hai kya woh previously wla hi hai kyuki hasehed wle ko toh change in kr skte into original form?
+        - So iske liye jo naya password enter kr kiya hai usko bhi hmlog hash karenge and dono new hashed and previous wle ko compare krenge agar same raha toh login ho jyega wrna nahi ..kyuki same text se same hashed output niklega 
+        
