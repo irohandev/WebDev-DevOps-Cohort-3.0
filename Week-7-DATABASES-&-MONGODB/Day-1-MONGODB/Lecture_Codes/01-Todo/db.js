@@ -17,7 +17,6 @@ const Todo = new Schema({                                   //Yeh todo ka struct
 const UserModel =  mongoose.model('users', User);           //hmare ko kaunse collection mein rakhna hai data ko mongoDb mai so ussi ko mongoose.model se bta re ki users ke andar rkhna hai aur User uska schema 
 const TodoModel =  mongoose.model('todos', Todo);           //same with this ki todos collection pe store krna hai..aur Todo uska schema 
 
-
 module.exports = {                                          //exporting a module jisse I can use it in injex.js file aur ek object ko export kr rhe jispe UserModel aur TodoModel dono hai
     UserModel: UserModel,
     TodoModel: TodoModel
