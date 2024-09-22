@@ -95,6 +95,4 @@ function auth(req, res, next){                              //same auth fucntion
     }
 }
 
-
-
 app.listen(3000);
