@@ -32,6 +32,7 @@ function  multiplyHandler(req, res) {
 }
 
 app.get("/sum",reIncreaser,sumHandler);             //bich mei we have writen middleware name beacuse I need it for this route 
+
 app.get("/multiply",multiplyHandler);               //aur jab middleware is route ke liye nahi chahiye hga toh we will not specify that.
 
 

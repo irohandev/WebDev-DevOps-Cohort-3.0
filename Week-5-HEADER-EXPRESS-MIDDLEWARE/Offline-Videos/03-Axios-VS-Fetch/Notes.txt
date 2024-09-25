@@ -1,0 +1,6 @@
+Notes:
+Difference between the both -
+    - Axios will automatically transforms the server's response data, while with Fetch, you need to call the response. 
+    - Axios me we don't need to parse the data using response.json()
+    - Json method to parse the data into a JavaScript object.
+    - Here we have to parse the data with response.json()

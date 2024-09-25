@@ -1,0 +1,47 @@
+1. What are databases?
+    - Databases are organized collections of data that are structured to enable efficient storage, retrieval, and management of information.
+    - Whenever you create a `full stack app` , you  `persist` data in `databases`. 
+    - For example :
+        1. User information
+        2. TODOs of your todo app
+        3. Posts for facebook
+        4. Tweets for twitter
+
+2. Types of databases - 
+    - Relational Databases : Use tables to store data and relationships between data (e.g., MySQL, PostgreSQL).
+    - NoSQL Databases: Designed for more flexible data models and often used for big data or real-time web applications (e.g., MongoDB).
+    - Graph Databases: Store data in nodes and edges to represent relationships (e.g., Neo4j).
+    - Vector Databases: Used in ML to store data in the form of embeddings
+
+3. MongoDB and NoSQL databases - 
+    - NoSQL databases are a broad category of database systems that diverge from the traditional relational model used in SQL databases. 
+    - They are designed to handle a variety of data models and workloads that may not fit neatly into the tabular schema of relational databases.
+
+    - Properties :
+        - Schema Flexibility: NoSQL databases often allow for a flexible schema, meaning you can store data in formats that don't require a fixed structure.
+        - Scalability: Many NoSQL databases are designed to scale out horizontally, making it easier to distribute data across multiple servers and handle large volumes of traffic.
+
+    - MongoDB :
+        - MongoDB is a NoSQL database that uses a document-oriented approach. Data is stored in flexible, JSON-like documents, which can have nested structures and varied fields.
+
+4. Creating a free MongoDB Server - 
+    1. Signup on https://cloud.mongodb.com/
+    2. Create a `free M0` cluster
+    3. Create a `User`
+    4. Install MongoDB compass
+    5. Put the connection URL to connect to the database
+
+5. Seeding data in the DB - 
+    - Lets put some data in the `Cluster` manually :
+        1. Create a new `Database` called `todo-app`
+        2. Create two collections inside it
+            i. `users`
+            ii. `todos`
+        3. Seed some data inside the collections
+
+6. CRUD Operations - 
+    - CRUD operations in MongoDB refer to the basic operations you can perform on documents within a MongoDB database. CRUD stands for:
+        1. Create: Adding new documents to a collection.
+        2. Read: Retrieving documents from a collection.
+        3. Update: Modifying existing documents in a collection.
+        4. Delete: Removing documents from a collection.

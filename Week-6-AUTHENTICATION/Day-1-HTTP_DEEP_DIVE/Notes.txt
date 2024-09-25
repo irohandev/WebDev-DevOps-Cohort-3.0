@@ -1,0 +1,30 @@
+Notes:
+
+1. What is authentication?
+    - The process of letting users `sign in` / `sign out` of your website. Making sure your `routes` are protected and users can only get back their `own` data and not the data from a different user.
+    - It is the process of verifying the identity of a user, ensuring they are who they claim to be. This is typically achieved through the use of credentials, such as usernames and passwords. It involves letting users sign in/sign out of your website, ensuring that routes are protected, and that users can only access their own data and not data from other users.
+
+
+2. Why Use Authentication?
+    - Authentication is crucial for protecting sensitive information and restricting access to authorized users. By implementing authentication mechanisms, you can ensure that only authenticated users can access certain features or resources within your application.
+
+
+3. Authentication Workflow (Bank Example)
+    - When you go to open a bank account:
+        - You go to the bank and provide your information.
+        - The bank issues you a cheque book.
+        - Every time you want to send money, you write it in the cheque book and send it to the bank.
+        - This is how the bank identifies you.
+
+
+4. What is Token Authentication?
+    - Token authentication works by generating a random string (token) for the user when they authenticate. The token is included in the HTTP Authorization header on each subsequent request and is validated by checking the database on each request. The benefit of token authentication is its simplicity, as it keeps user credentials secure. The credentials are only sent to the server once and are never stored or cached for future requests, ensuring their security.
+
+
+5. What is JWT Token (JSON Web Token)?
+    - JWTs, or JSON Web Tokens, are a compact and self-contained way to represent information between two parties. They are commonly used for authentication and information exchange in web applications.
+    - JWTs are Stateless : JWTs contain all the information needed to authenticate a request, so the server doesn’t need to store session data. All the `data` is stored in the token itself.
+
+6. Tokens vs. JWTs
+    - Stateful tokens require storing token data in a variable or database. This necessitates a database request every time the user accesses an authenticated endpoint, leading to potential inefficiencies.
+    - JWTs are compact and self-contained, representing information between two parties. They are stateless, containing all the information needed to authenticate a request within the token itself. This means the server does not need to store session data, as all necessary data is included in the token.

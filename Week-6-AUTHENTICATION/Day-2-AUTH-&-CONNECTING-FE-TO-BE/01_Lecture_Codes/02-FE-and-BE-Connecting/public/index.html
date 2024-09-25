@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Website</title>
+
+    <!-- Yeh axios ke liye  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>     
+    <style>
+        /* yeh css part woh frontend k styling k liye not necessary krna hai toh kro wrna keep it simple. */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f2f2f2, #e0e0e0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 80%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .form-container {
+            width: 45%;
+            min-width: 280px;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 600;
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background: #003d7a;
+            transform: scale(0.98);
+        }
+
+        #information {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #f9f9f9;
+            color: #333;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .logout {
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #dc3545;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .logout:hover {
+            background: #c82333;
+            transform: scale(1.05);
+        }
+
+        .logout:active {
+            background: #a71d2a;
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-container {
+                width: 100%;
+            }
+
+            button {
+                padding: 8px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Sign Up</h2>                
+            <input id="signup-username" type="text" name="username" placeholder="Username">
+            <input id="signup-password" type="password" name="password" placeholder="Password">
+            <button onclick="signup()">Submit</button>
+        </div>
+        
+        <div class="form-container">
+            <h2>Sign In</h2>
+            <input id="signin-username" type="text" name="username" placeholder="Username">
+            <input id="signin-password" type="password" name="password" placeholder="Password">
+            <button onclick="signin()">Submit</button>
+        </div>
+        
+        <div style="width: 100%;">
+            <h2>User Information</h2>
+            <div id="information">Please sign in to view user information.</div>
+        </div>
+        
+        <button class="logout" onclick="logout()">Logout</button>
+    </div>
+    
+    <script>
+        async function signup() {           //jab signup button click hoga toh yeh fucntion call ho jyega 
+            //yaha se values ko le rhe username aur password ka
+            const username = document.getElementById("signup-username").value;
+            const password = document.getElementById("signup-password").value;
+            
+
+            //idhar try catch use kr rhe ki try kro this wrna error aye toh catch wla part
+            try {
+                await axios.post("http://localhost:3000/signup", {          //server k code se input k liye yaha se aur isko await krwana pdega kyuki it may take some time isliye
+                    username: username,
+                    password: password
+                });
+                alert("You are signed up!");
+            } catch (error) {                                               //aur kuch error ho jaye toh yeh
+                console.error("Signup error:", error);
+                alert("Error signing up. Please try again.");
+            }
+        }
+
+        async function signin() {               //jab signin button click hoga toh yeh fucntion call ho jyega 
+
+            //yaha se values ko le rhe username aur password ka
+            const username = document.getElementById("signin-username").value;
+            const password = document.getElementById("signin-password").value;
+            
+            try {
+                const response = await axios.post("http://localhost:3000/signin", {     //server k code se input k liye yaha se aur isko response pe store kr rhe hai and isko await krwana pdega kyuki it may take some time isliye
+                    username: username,
+                    password: password
+                });
+                localStorage.setItem("token", response.data.token);                     //isko local storage mein rakh rhe jaise input aa rha hai reponse se woh token bana rha hai backend server ke code se 
+                alert("You are signed in!");
+                getUserInformation();                                                   // Fetch user information after signing in yeh call kr rha hai 
+            } catch (error) {
+                console.error("Signin error:", error);
+                alert("Error signing in. Please check your credentials.");              //agar if kuch glat username or password enter hua toh yeh error ayega 
+            }
+        }
+
+        async function getUserInformation() {                       //yeh jaise hi signin hua ab uska info display krna hai ki like username and password
+            const token = localStorage.getItem("token");            //ab jo local storage pe backend server pe token tha woh token se uske username aur password ko nikal rha hai
+            if (!token) {                                           //agar token nahi hai toh iska mtlb signin hi nhi hua hai wrna token toh hoga hi
+                document.getElementById("information").innerHTML = "Not signed in";
+                return;
+            }
+
+            try {                                           //warna there will be token kyuki headers pe token pass kr rh ethe backend pe ...jaise get localhost:3000/me krte the postman pe aur header pe token add krte the 
+                const response = await axios.get("http://localhost:3000/me", {
+                    headers: { 'token': token }             //yaha woh header pe token diye 
+                });
+                document.getElementById("information").innerHTML = `Username: ${response.data.username}<br>Password: ${response.data.password}`;            //ab us header ke token se rest of the data ko nikal rhaa hai woh like the username, password 
+            } catch (error) {
+                console.error("Error fetching user information:", error);                       //agar kuch error ane se yeh error 
+                document.getElementById("information").innerHTML = "Error fetching user information.";              //aur yeh show kr dega useriinfo wale part mein
+            }
+        }
+
+        function logout() {                 //aur jaise logout pe click krenge logout button pe toh yeh call ho jyega 
+            localStorage.removeItem("token");           //aur localstorage ko empty kr dega jisse token hatt jyega jo uspe pehle store kr rhe the ..aur if there is no token then no username and password will be there present in it. 
+            document.getElementById("information").innerHTML = "You have been logged out.";         //aur yeh udhr uske innerHTML mein store hokr udhr show kr dega 
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+NOTE:
+Frontend ko host krne ke liye live server us nhi krenge ..
+kyuki hmlog ne FE aur BE ko connect kr diya hai..
+Just backend ke server ko start krna hai aur browser pe search krna hai localhost:3000 isse FE run ho jyga  
+-->
