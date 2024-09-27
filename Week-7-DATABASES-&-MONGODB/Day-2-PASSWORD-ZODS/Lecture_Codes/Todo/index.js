@@ -1,12 +1,11 @@
 const express = require("express");
 const { UserModel, TodoModel } = require("./db");
+const app = express()
+const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "MaiNahiBataunga"
 const mongoose = require("mongoose")
-
-mongoose.connect("mongodb+srv://admin:rohandev123@cluster0.wm8zj.mongodb.net/todo-app")                 //.net/DATABASE_Name - idhar agar koi new database k name add krenge toh woh create kr dega aur existing mein chahiye toh uska name add kr do 
-
-const app = express()
+mongoose.connect("mongodb+srv://admin:rohandev123@cluster0.wm8zj.mongodb.net/todo-app-using-Hashing-&-salt")                 //.net/DATABASE_Name - idhar agar koi new database k name add krenge toh woh create kr dega aur existing mein chahiye toh uska name add kr do 
 
 app.use(express.json())                         //body ko parse krne k liye chahiye hota hai yeh
 
@@ -14,29 +13,47 @@ app.post("/signup", async function(req, res){
     const email = req.body.email;               //yaha body pe req ja rha hai isliye eisko parse krna hai 
     const password = req.body.password;
     const name = req.body.name;
-    
-    await UserModel.create({                    //isko await isliye kiye may be error ho skta hai like user idhar input diya nhi but res.json se message phle mil jaye isliye isko await kiye jisse woh phle data le le phr woh res.json ka message show krega..warna await ni krenge toh then if database connect nhi hoga phr bhi woh message return kr dega 
-        email: email,
-        password: password,
-        name: name
-    })
 
-    res.json({
-        message: "you are logged in! "
-    })
+    let errorThrown = false;
+    try{
+        const hashedPassword = await bcrypt.hash(password, 5)      //will return a promise isliye await...5 isliye kyuki utne number of times woh salt ko add krke hash krega..woh nhi bhi likhnge toh chalega aur nahi likhnge toh await ka jrurt nahi
     
+        await UserModel.create({                    //isko await isliye kiye may be error ho skta hai like user idhar input diya nhi but res.json se message phle mil jaye isliye isko await kiye jisse woh phle data le le phr woh res.json ka message show krega..warna await ni krenge toh then if database connect nhi hoga phr bhi woh message return kr dega 
+            email: email,
+            password: hashedPassword,
+            name: name
+        });
+    }catch(e){
+        res.json({
+            "message": "User already exist!"
+        });
+        errorThrown = true
+    }
+
+    if(!errorThrown){
+        res.json({
+            "message": "You are signed up!"
+        });
+    }    
 });
 
 app.post("/signin", async function(req, res){
     const email = req.body.email;
     const password = req.body.password;
 
-    const user = await UserModel.findOne({              //userModel se search krega ki yeh username & password...and usko user variable pe store krega and isko bhi await krwana pdega ..kyuki all database call had to be awaited 
-        email: email,
-        password: password
+    const user = await UserModel.findOne({              //userModel se search krega ki yeh username hai ya nhi and hai toh sirf email lega kyuki password ab nahi lega kyuki is barr password hashed ho chuka hai ..plain password se alag hai
+        email: email
     })
+    const passwordMatch = await bcrypt.compare(password, user.password);      //isse compare kr rhe hai ki hashed pass done same hui ya nahi... aur isko bhi await krwana pdega..
 
-    if(user){                                           //if uses is there ..then generate the jwt token
+    if(!user){
+        res.status(403).json({
+            "message": "User not found in database"
+        })
+        return
+    }
+
+    if(passwordMatch){                          //if password match hua toh yeh niche ka kaam hoga warna else return kr dega                            //if uses is there ..then generate the jwt token
         const token = jwt.sign({
             id: user._id.toString()                      //sare users ka ek id hoga User collection mai jo sabke liye alg hoga ..isliye is barr hmlog user._id ko sign krenge aur token generate idhar se krwaynge...aur isko string mein convert kr rhe hai..kyuki id mongoDb mein object ID hota hai 
         }, JWT_SECRET);
