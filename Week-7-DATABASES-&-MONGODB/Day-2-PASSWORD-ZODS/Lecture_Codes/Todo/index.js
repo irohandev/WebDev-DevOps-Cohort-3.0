@@ -5,11 +5,20 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "MaiNahiBataunga"
 const mongoose = require("mongoose")
+const {z} = require("zod")                      //Zod ko import kiye hai 
+
 mongoose.connect("mongodb+srv://admin:rohandev123@cluster0.wm8zj.mongodb.net/todo-app-using-Hashing-&-salt")                 //.net/DATABASE_Name - idhar agar koi new database k name add krenge toh woh create kr dega aur existing mein chahiye toh uska name add kr do 
 
 app.use(express.json())                         //body ko parse krne k liye chahiye hota hai yeh
 
 app.post("/signup", async function(req, res){
+
+    const requiredBody = z.object({             //idhar zod use kiye hai
+        email : z.string(),
+        name : z.string(),
+        password : z.string()
+    }) 
+
     const email = req.body.email;               //yaha body pe req ja rha hai isliye eisko parse krna hai 
     const password = req.body.password;
     const name = req.body.name;
