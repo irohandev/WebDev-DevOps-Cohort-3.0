@@ -23,7 +23,7 @@ app.post("/signup", async function(req, res){
     if(!parsedDataSuccess.success){                     //If data is not correct then yeh response return kr do
         res.json({
             message: "Incorrect Format",
-            error: parsedDataSuccess.error              //yeh return kr dega ki user jis format mein input kr rha uspe error kya hai...jisse woh resignin/signup kre sahi format mein 
+            error: parsedDataSuccess.error              //yeh return kr dega ki user jis format mein input kr rha uspe error kya hai...jisse woh resignin/signup kre sahi format mein
         })
         return
     }
