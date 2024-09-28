@@ -114,3 +114,10 @@ function auth(req, res, next){                              //same auth fucntion
 
 
 app.listen(3000);
+
+
+
+/*
+Here we are using Zod library for the input validation - 
+    - Input validation se jisse pata chal paye ki mko user se body mein teen cheex chahiye toh utna hi input de aur jo string mein chahiye toh string input kre na ki ko object input kre 
+*/    
