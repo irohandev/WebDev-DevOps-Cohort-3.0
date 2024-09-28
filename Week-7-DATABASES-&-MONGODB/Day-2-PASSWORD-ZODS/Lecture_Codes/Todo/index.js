@@ -15,7 +15,7 @@ app.post("/signup", async function(req, res){
     const name = req.body.name;
 
     let errorThrown = false;
-    try{
+    try{                                            //Tr catch use kr diye jisse kuch error bhi aye toh woh error handle ho jaye na ki server crash ho jaye 
         const hashedPassword = await bcrypt.hash(password, 5)      //will return a promise isliye await...5 isliye kyuki utne number of times woh salt ko add krke hash krega..woh nhi bhi likhnge toh chalega aur nahi likhnge toh await ka jrurt nahi
     
         await UserModel.create({                    //isko await isliye kiye may be error ho skta hai like user idhar input diya nhi but res.json se message phle mil jaye isliye isko await kiye jisse woh phle data le le phr woh res.json ka message show krega..warna await ni krenge toh then if database connect nhi hoga phr bhi woh message return kr dega 
