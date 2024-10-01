@@ -12,6 +12,7 @@ app.use("/course", courseRouter)    //same here router ke prefix ko pehle hi def
 app.use("/admin", adminRouter)
 
 async function main(){              //yeh func isliye bnaye kyuki like aise bhi ho skta hai ki bina database connct hue hi server start ho jaye isliye ek async main func bnaye jispe phle database connect hoga uske bd server 3000 pe shuru hoga 
+    //This will ensure ki phle database will get connected then ony server will start 
     await mongoose.connect("mongodb+srv://admin:rohandev123@cluster0.wm8zj.mongodb.net/course-selling-app")
     app.listen(3000);       
 
