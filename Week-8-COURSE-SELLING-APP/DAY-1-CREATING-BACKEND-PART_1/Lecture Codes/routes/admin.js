@@ -12,3 +12,7 @@ adminRouter.post("/signin", function(req, res){
         message: "Signup endpoint"
     })
 })
+
+module.exports = {
+    adminRouter: adminRouter
+}
