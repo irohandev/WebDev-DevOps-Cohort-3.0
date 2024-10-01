@@ -20,7 +20,7 @@ app.get("/user/purchases", function(req, res){           //this routes for user 
     })
 })
 
-app.post("/user/purchase", function(req, res){          //this routes for user jo purchase krega courses
+app.post("/course/purchase", function(req, res){          //this routes for user jo purchase krega courses
     res.json({
         message: "Signin endpoint"
     })
