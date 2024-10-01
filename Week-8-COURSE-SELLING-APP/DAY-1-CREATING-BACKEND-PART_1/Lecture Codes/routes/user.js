@@ -20,3 +20,7 @@ userRouter.get("/purchases", function(req, res){           //this routes for use
         message: "Signup endpoint"
     })
 })
+
+module.exports = {                          //isko export kr diye jaise react mein krte hai us trike se 
+    userRouter: userRouter
+}
