@@ -1,4 +1,4 @@
-import { Router } from "express"        //new way of importing router from express
+const { Router } = require("express")        
 const userRouter = Router();
 
 

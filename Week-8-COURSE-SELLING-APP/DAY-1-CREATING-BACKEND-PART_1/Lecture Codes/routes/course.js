@@ -1,5 +1,4 @@
-import { Router } from "express"
-
+const { Router } = require("express")        
 const courseRouter = Router();
 
 
@@ -9,7 +8,7 @@ courseRouter.post("/purchase", function(req, res){          //this routes for us
     })
 })
 
-courseRouter.get("/", function(req, res){
+courseRouter.get("/preview", function(req, res){
     res.json({
         message: "Signup endpoint"
     })
