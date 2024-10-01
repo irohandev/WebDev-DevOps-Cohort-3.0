@@ -1,7 +1,6 @@
 const { Router } = require("express")        
 const userRouter = Router();
 
-
 userRouter.post("/signup", function(req, res){      //ab userRouter bana chuke hai aur routing kiye hai toh we don't have access of app so userRouter use krenge uske jgah pe 
     res.json({
         message: "Signup endpoint"
