@@ -126,6 +126,7 @@ userRouter.post("/signin",async function(req, res){
         res.json({
             token:token,
         });
+
     }else{
         // If the password does not match, return a error indicating the invalid credentials
         res.status(403).json({
@@ -133,7 +134,6 @@ userRouter.post("/signin",async function(req, res){
             message:"Invalid credentials!"
         })
     }
-
 });
 
 // GET route for purchased courses
