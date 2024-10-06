@@ -13,6 +13,21 @@ adminRouter.post("/signin", function(req, res){
         message: "Signup endpoint"
     })
 })
+adminRouter.post("/course", function(req, res){
+    res.json({
+        message: "Signup endpoint"
+    })
+})
+adminRouter.post("/course", function(req, res){
+    res.json({
+        message: "Signup endpoint"
+    })
+})
+adminRouter.post("/course/bulk", function(req, res){
+    res.json({
+        message: "Signup endpoint"
+    })
+})
 
 module.exports = {
     adminRouter: adminRouter
