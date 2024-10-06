@@ -37,11 +37,10 @@ userRouter.post("/signup", async function(req, res){
 
     //If data is not correct then yeh response return kr do
     if(!parsedDataSuccess.success){                     
-        res.json({
+        return res.json({
             message: "Incorrect Format",
             error: parsedDataSuccess.error
         })
-        return
     }
 
     // Extract validated email, password, firstName, and lastName from the request body
