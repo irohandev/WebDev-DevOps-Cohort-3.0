@@ -139,9 +139,10 @@ userRouter.post("/signin",async function(req, res){
 userRouter.get("/purchases", function(req, res){
     res.json({
         message: "Signup endpoint"
-    })
+    });
+
 })
 
 module.exports = {
     userRouter: userRouter
-}
+};
