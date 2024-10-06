@@ -113,7 +113,6 @@ userRouter.post("/signin",async function(req, res){
         res.json({
             message: "Signup endpoint"
         }); 
-    })
 
     // If the password matches, create a jwt token and send it to the client
     if(passwordMatch){
@@ -135,13 +134,15 @@ userRouter.post("/signin",async function(req, res){
         })
     }
 
+});
 
-userRouter.get("/purchases", function(req, res){           //this routes for user ne jo purchase kiya hua hai uske liye
+// GET route for purchased courses
+userRouter.get("/purchases", function(req, res){
     res.json({
         message: "Signup endpoint"
     })
 })
 
-module.exports = {                          //isko export kr diye jaise react mein krte hai us trike se 
+module.exports = {
     userRouter: userRouter
 }
