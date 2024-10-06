@@ -18,6 +18,7 @@ const bcrypt = require("bcryptjs");
 const z = require("zod");
 const { userModel } = require("../db");
 
+const JWT_USER_PASSWORD = "Random123@"
 
 //Post router for user to Signup
 userRouter.post("/signup", async function(req, res){      
@@ -71,7 +72,16 @@ userRouter.post("/signup", async function(req, res){
     });
 });
 
-userRouter.post("/signin", function(req, res){
+userRouter.post("/signin",async function(req, res){
+
+
+    // Extract validated email and password from the body
+    const { email, password } = req.body
+    const user = await userModel.find({
+        email,
+        password
+    });
+    
     res.json({
         message: "Signup endpoint"
     })
