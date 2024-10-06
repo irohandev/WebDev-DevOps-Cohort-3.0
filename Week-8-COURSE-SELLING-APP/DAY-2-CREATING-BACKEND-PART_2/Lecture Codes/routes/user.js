@@ -12,7 +12,7 @@ const {Router} = require("express");
 // Create a new instance of the Router for defining user-related routes
 const userRouter = Router();
 
-//import the required dependencies 
+// Import the required dependencies 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const z = require("zod");
@@ -20,7 +20,7 @@ const { userModel } = require("../db");
 
 const JWT_USER_PASSWORD = "Random123@"
 
-//Post router for user to Signup
+// Post router for user to Signup
 userRouter.post("/signup", async function(req, res){      
 
     //input validation using zod 
@@ -66,26 +66,74 @@ userRouter.post("/signup", async function(req, res){
             message: "You are already signup",
         });
     }
-
+    // Send a success response back to client indicating successfully singup
     res.json({
         message: "Signed up Successfull"
     });
 });
 
+// POST route for user signin
 userRouter.post("/signin",async function(req, res){
 
+    // Define the schema for validating the request body data using zod
+    const requireBody = z.object({
+
+        // Email must be a valid email format
+        email: z.string().email(),
+
+        // Password must be at least 6 character
+        password: z.password.min(6),
+    });
+    // Parse adnd validate the incomng request body data
+    const parsedDataWithSuccess = requiredBody.safeParse(req.body);
+
+    // If validation fails, return a error with the validation error details
+    if(!parsedDataWithSuccess){
+        return res.json({
+            message: "Incorrect Data Fotrmat",
+            error: parsedDataWithSuccess.error,
+        });
+    };
 
     // Extract validated email and password from the body
     const { email, password } = req.body
     const user = await userModel.find({
-        email,
-        password
+        email: email,
     });
-    
-    res.json({
-        message: "Signup endpoint"
+
+    // If the user is not found, return a error indicating incorrect credentials
+    if(!user){
+        return res.status(403).json({
+            message:"Incorrect Credentials !"
+        });
+    }
+
+    // Compare the provided password with the stored hashed password using bcrypt
+    const passwordMatch = await bcrypt.compare(password, hashedPassword)
+        res.json({
+            message: "Signup endpoint"
+        }); 
     })
-})
+
+    // If the password matches, create a jwt token and send it to the client
+    if(passwordMatch){
+
+        // Create a jwt token using the jwt.sign() method
+        const token = jwt.sign({
+            id: user._id
+        }, JWT_USER_PASSWORD);
+
+        // Send the generated token back to client
+        res.json({
+            token:token,
+        });
+    }else{
+        // If the password does not match, return a error indicating the invalid credentials
+        res.status(403).json({
+                    // Error message for failed password comparison
+            message:"Invalid credentials!"
+        })
+    }
 
 
 userRouter.get("/purchases", function(req, res){           //this routes for user ne jo purchase kiya hua hai uske liye
