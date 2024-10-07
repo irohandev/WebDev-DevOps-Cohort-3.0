@@ -81,13 +81,13 @@ userRouter.post("/signin",async function(req, res){
         email: z.string().email(),
 
         // Password must be at least 6 character
-        password: z.password.min(6),
+        password: z.string().min(6)
     });
     // Parse adnd validate the incomng request body data
-    const parsedDataWithSuccess = requiredBody.safeParse(req.body);
+    const parsedDataWithSuccess = requireBody.safeParse(req.body);
 
     // If validation fails, return a error with the validation error details
-    if(!parsedDataWithSuccess){
+    if(!parsedDataWithSuccess.success){
         return res.json({
             message: "Incorrect Data Fotrmat",
             error: parsedDataWithSuccess.error,
@@ -96,7 +96,7 @@ userRouter.post("/signin",async function(req, res){
 
     // Extract validated email and password from the body
     const { email, password } = req.body
-    const user = await userModel.find({
+    const user = await userModel.findOne({
         email: email,
     });
 
@@ -108,10 +108,7 @@ userRouter.post("/signin",async function(req, res){
     }
 
     // Compare the provided password with the stored hashed password using bcrypt
-    const passwordMatch = await bcrypt.compare(password, hashedPassword)
-        res.json({
-            message: "Signup endpoint"
-        }); 
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
     // If the password matches, create a jwt token and send it to the client
     if(passwordMatch){
@@ -137,6 +134,8 @@ userRouter.post("/signin",async function(req, res){
 
 // GET route for purchased courses
 userRouter.get("/purchases", function(req, res){
+
+   
     res.json({
         message: "Signup endpoint"
     });
