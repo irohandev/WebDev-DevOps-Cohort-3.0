@@ -10,8 +10,7 @@ const {adminModel} = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const z = require("zod");
-
-const JWT_ADMIN_PASSWORD = "Random123@"
+const {JWT_ADMIN_PASSWORD} = require("../config")
 
 adminRouter.post("/signup", async function(req, res){      
 

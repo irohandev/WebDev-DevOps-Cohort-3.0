@@ -18,7 +18,7 @@ const bcrypt = require("bcryptjs");
 const z = require("zod");
 const { userModel } = require("../db");
 
-const JWT_USER_PASSWORD = "Random123@"
+const {JWT_USER_PASSWORD} = require("../config")
 
 // Post router for user to Signup
 userRouter.post("/signup", async function(req, res){      
