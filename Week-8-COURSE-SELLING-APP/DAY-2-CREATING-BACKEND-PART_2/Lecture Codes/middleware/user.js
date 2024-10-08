@@ -26,7 +26,6 @@ function userMiddleware(req, res, next){
             message: "You are not signed in!",
         });
     }
-}
 
 
 // Export the userMiddleware function so that it can be used in other files
