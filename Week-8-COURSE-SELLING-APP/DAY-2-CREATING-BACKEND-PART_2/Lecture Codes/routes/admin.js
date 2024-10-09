@@ -162,20 +162,86 @@ adminRouter.post("/course", adminMiddleware, async function(req,res) {
     });
 });
 
-adminRouter.put("/course", function(req, res){
+adminRouter.put("/course", adminMiddleware, async function(req,res) {
+    // Get the adminId from the request object, set by the admin middleware
+    const adminId = req.userId;
+
+    // Define a schema using zod to validate the request body for updating a course
+    const requireBody = z.object({
+        courseId: z.string().min(5), // Ensure course ID is at least 5 characters
+        title: z.string().min(3).optional(), // Title is optional
+        description: z.string().min(5).optional(), // Description is optional
+        imageUrl: z.string().url().min(5).optional(), // Image URL is optional
+        price: z.number().positive().optional(), // Price is optional
+    });
+
+    // Parse and validate the incoming request body against the schema
+    const parseDataWithSuccess = requireBody.safeParse(req.body);
+
+    // If validation fails, respond with an error message and the details of the error
+    if(!parseDataWithSuccess){
+        return res.json({
+            message: "Incorrect data format",
+            error: parseDataWithSuccess.error,
+        });
+    }
+
+    // Destructure the validated fields from the request body
+    const {title,description,imageUrl,price,courseId} = req.body;
+
+    // Attempt to find the course in the database using the provided courseId and adminId
+    const course = await courseModel.findOne({
+        _id: courseId, // Match the course by ID
+        creatorId: adminId, // Ensure the admin is the creator
+    });
+
+    // If the course is not found, respond with an error message
+    if(!course){
+        return res.status(404).json({
+            message: "Course not found!", // Inform the client that the specified course does not exist
+        });
+    }
+
+    // Update the course details in the database using the updates object
+    await courseModel.updateOne({
+        _id: courseId, // Match the course by ID
+        creatorId: adminId, // Ensure the admin is the creator
+    },
+    {
+        // It uses the provided courseId and adminId to identify the course. For each field (title, description, imageUrl, price), if a new value is provided, it is used to update the course. If a field is not provided, the existing value from the database is kept.
+        title: title || course.title,
+        description: description || course.description,
+        imageUrl: imageUrl || course.imageUrl,
+        price: price || course.price,
+    });
+
+    // Respond with a success message upon successful course update
+    res.status(200).json({
+        message: "Course updated!", // Successfully course updated or not
+    });
+});
+
+
+
+// Define the admin routes for getting all courses
+adminRouter.get("/course/bulk", adminMiddleware, async function(req,res){
+    // Get the adminId from the request object
+    const adminId = req.adminId;
+
+    // Find all the courses with given creatorId
+    const courses = await courseModel.find({
+        creatorId: adminId,
+    });
+
+    // Respond with the courses if they are found successfully
     res.json({
-        message: "Signup endpoint"
-    })
-})
+        message: "Course Updated",
+        courses: courses,
+    });
+});
 
-
-
-adminRouter.post("/course/bulk", function(req, res){
-    res.json({
-        message: "Signup endpoint"
-    })
-})
 
 module.exports = {
     adminRouter: adminRouter
 }
+

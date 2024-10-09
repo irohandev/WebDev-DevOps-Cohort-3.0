@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 // Import the jwt admin password from the config file for verification
 const {JWT_ADMIN_PASSWORD} = require("../config");
 
-// Define the adminMiddleware function to verfiy the admin token
+// Define the adminMiddleware function to verify the admin token
 function adminMiddleware(req,res,next){
     // Retrieve the authorization token from the request headers
     const token = req.headers.token;

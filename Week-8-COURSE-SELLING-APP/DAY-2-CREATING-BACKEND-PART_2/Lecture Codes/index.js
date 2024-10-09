@@ -21,6 +21,8 @@ app.use(express.json());
 
 // Retrieve the MongoDB connection string (MONGO_URL) from the .env file
 const MONGO_URL = process.env.MONGO_URL;
+console.log(MONGO_URL);
+
 
 // So any routes defined in userRouter, courseRouter, adminRouter will be accessed through these
 app.use("/user", userRouter);

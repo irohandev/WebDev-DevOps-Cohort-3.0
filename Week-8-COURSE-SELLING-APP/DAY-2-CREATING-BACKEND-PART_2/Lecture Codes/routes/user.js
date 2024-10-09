@@ -126,21 +126,40 @@ userRouter.post("/signin",async function(req, res){
     }else{
         // If the password does not match, return a error indicating the invalid credentials
         res.status(403).json({
-                    // Error message for failed password comparison
+            // Error message for failed password comparison
             message:"Invalid credentials!"
         })
     }
 });
 
-// GET route for purchased courses
-userRouter.get("/purchases", function(req, res){
+// Define the GET route
+userRouter.get("/purchases", userMiddleware, async function(req,res) {
+    const userId = req.userId;
+    const purchases = await purchaseModel.find({
+        userId: userId,
+    })
 
-   
-    res.json({
-        message: "Signup endpoint"
+    if(!purchases){
+        return res.status(404).json({
+            // Error message for no purchases found
+            message:"No purchases found",
+        });
+    }
+
+    // If purchases are found, extract the courseIds from the found purchases
+    const purchasesCourseIds = purchases.map((purchase) => purchase.courseId);
+
+    // Find all course details associated with the courseIds
+    const courseData = await courseModel.find({
+        _id: {$in:purchasesCourseIds}, 
     });
 
-})
+    // Send the purchases and corresponding course details back to the client
+    res.status(200).json({
+        purchases,
+        courseData,
+    });
+});
 
 
 
