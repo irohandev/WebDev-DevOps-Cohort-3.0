@@ -19,7 +19,7 @@ Notes:
         - It represents the dynamic things in your app (things that change).
         - For example, the value of the counter.
     
-    ii. Components
+    ii. Components :
         - How a DOM element should render, given a state.
         - It is a re-usable, dynamic, HTML snippet that changes given the state.
 
