@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <!-- Sets the title of the page -->
+    <title>Counter using Component & State </title>
+</head>
+<body>
+    <!-- Placeholder div where the button will be rendered -->
+    <div id="buttonParent"></div>
+
+    <script>
+        // Initializes state with a count of 0
+        let state = { count: 0 };
+
+        // Function to handle button press
+        function onButtonPress() {
+            // Increments the count by 1
+            state.count++;
+            // Re-renders the button
+            buttonComponentRerender();
+        }
+
+        // Function to update the UI
+        function buttonComponentRerender() {
+            // Clears the div
+            document.getElementById("buttonParent").innerHTML = "";
+            // Creates a new button with the updated count
+            const component = buttonComponent(state.count);
+            // Adds the button to the DOM
+            document.getElementById("buttonParent").appendChild(component);
+        }
+
+        // Function to create the button element
+        function buttonComponent(count) {
+            // Creates a button element
+            const button = document.createElement("button");
+            // Sets the button's text to display the current count
+            button.innerHTML = `Counter ${count}`;
+            // Adds an event listener to handle button clicks
+            button.onclick = onButtonPress;
+            // Returns the button element
+            return button;
+        }
+
+        // Initial render of the button
+        buttonComponentRerender();
+    </script>
+</body>
+</html>
