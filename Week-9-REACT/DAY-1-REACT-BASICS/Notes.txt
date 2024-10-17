@@ -22,6 +22,10 @@ Notes:
     ii. Components :
         - How a DOM element should render, given a state.
         - It is a re-usable, dynamic, HTML snippet that changes given the state.
+        - This button is a component. It takes the state (currentCount) as an input and is supposed to render accordingly.
+    
+    iii. A state change triggers a re-render. A re-render represents the actual DOM being manipulated, when the state changes.
 
+    iv. You usually have to deﬁne all your components once, and then all you have to do is update the state of your app, React takes care of re-rendering your app.
 
 
