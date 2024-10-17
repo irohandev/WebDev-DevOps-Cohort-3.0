@@ -1,0 +1,27 @@
+Notes: 
+
+- React is just an easier way to write normal HTML/CSS/JS. It’s a new syntax, that under the hood gets converted to HTML/CSS/JS.
+
+1. Why React?
+    - People realised it’s harder to do DOM manipulation the conventional way.
+    - There were libraries that came into the picture that made it slightly easy, but still for a very big app it’s very hard (JQuery).
+    - Eventually, VueJS/React created a new syntax to do frontends.
+    - Under the hood, the react compiler convert your code to HTML/CSS/JS.
+
+2. State & Components:
+    - To create a react app, you usually need to worry about two things. Creators of frontend frameworks realised that all websites can effectively be divided into two parts :
+        i. State
+        ii. Component 
+
+3. State / Component Re-rendering: 
+    i. State : 
+        - Everything in a website that changes is a state. An object that represents the current state of the app.
+        - It represents the dynamic things in your app (things that change).
+        - For example, the value of the counter.
+    
+    ii. Components
+        - How a DOM element should render, given a state.
+        - It is a re-usable, dynamic, HTML snippet that changes given the state.
+
+
+
