@@ -28,4 +28,6 @@ Notes:
 
     iv. You usually have to deﬁne all your components once, and then all you have to do is update the state of your app, React takes care of re-rendering your app.
 
+4. JSX :
+    - JSX stands for JavaScript XML. JSX allows us to write HTML like code in React. JSX makes it easier to write and add HTML in React.
 
