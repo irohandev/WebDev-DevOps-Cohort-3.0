@@ -24,4 +24,3 @@ Notes:
         - Unnecessary or duplicated effects (like multiple API calls).
         - Inconsistent behavior (side effects might happen before rendering finishes).
         - Performance issues (side effects could block rendering or cause excessive re-rendering).
-
