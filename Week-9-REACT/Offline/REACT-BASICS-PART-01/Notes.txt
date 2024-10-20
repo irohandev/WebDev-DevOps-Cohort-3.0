@@ -6,7 +6,7 @@ Notes:
 2. Components:
     - In React, components are the building blocks of the user interface. They allow you to split the UI into independent, reusable pieces that can be thought of as custom, self-contained HTML elements.
 
-3. useState:
+3. useState Hook:
     - The useState hook is one of the fundamental React hooks, used to manage state in functional components. 
     - It allows a component to have and update internal data that can influence how the UI is rendered.
     - Syntax:
@@ -20,7 +20,7 @@ Notes:
 4. Tracking ee-renders: 
     - Tracking re-renders in a React component helps developers identify unnecessary renders, optimize performance, and understand when and why a component is updating. Here’s an explanation of why re-renders occur, how to track them, and strategies to reduce unnecessary re-renders.
 
-5. useEffect: 
+5. useEffect Hook: 
     - Before we understand useEffect , let’s understand what are Side effects.
 
     - Side effects:
@@ -142,3 +142,54 @@ Notes:
         i. Performance: SPAs reduce load times as they don’t require full-page reloads. Once the initial HTML, CSS, and JavaScript are loaded, subsequent interactions are faster.
         ii. User Experience: SPAs provide a seamless experience, akin to desktop applications, with minimal disruptions.
         iii. Easier to Build: By using client-side routing, developers can manage views and navigation more easily without relying on server-side rendering for every request.
+
+16. Layouts:
+    - In React, layouts are an important aspect of application design that help define the overall structure and organization of your user interface. 
+    - They provide a way to manage how different components are arranged and displayed on the page.
+
+17. useRef Hook:
+    - What is useRef?
+        - In React, useRef is a hook that provides a way to create a reference to a value or a DOM element that persists across renders but does not trigger a re-render when the value changes.
+
+    - Key Characteristics of useRef:
+        1. Persistent Across Renders: The value stored in useRef persists between component re-renders. This means the value of a ref does not get reset when the component re-renders, unlike regular variables.
+        2. No Re-Renders on Change: Changing the value of a ref (ref.current) does not cause a component to re-render. This is different from state (useState), which triggers a re-render when updated.
+
+18. Custom Hooks: 
+    - Custom hooks in React are a powerful feature that allows you to encapsulate and reuse stateful logic across different components. They are essentially JavaScript functions that can use React hooks internally. By creating custom hooks, you can abstract away complex logic, making your components cleaner and more manageable.
+
+    - Why Use Custom Hooks?
+        1. Reusability: If you find yourself using the same logic in multiple components, a custom hook can help you avoid code duplication.
+        2. Separation of Concerns: They allow you to separate business logic from UI logic, making your components more focused and easier to understand.
+
+    - Common custom hooks: 
+        i. usefetch
+        ii. useFetch with re-fetching
+        iii. usePrev
+        iv. uselsOnline
+        v. useDebounce
+
+        Example - uselsOnline:
+            import { useEffect, useState } from 'react';
+
+            const useIsOnline = () => {
+                const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+                useEffect(() => {
+                    const updateOnlineStatus = () => setIsOnline(navigator.onLine);
+
+                    window.addEventListener('online', updateOnlineStatus);
+                    window.addEventListener('offline', updateOnlineStatus);
+
+                    // Clean up the event listeners on component unmount
+                    return () => {
+                    window.removeEventListener('online', updateOnlineStatus);
+                    window.removeEventListener('offline', updateOnlineStatus);
+                    };
+                }, []);
+
+                return isOnline;
+            };
+
+            export default useIsOnline;
+
