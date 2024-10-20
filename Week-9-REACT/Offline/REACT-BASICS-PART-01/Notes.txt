@@ -1,0 +1,144 @@
+Notes:
+
+1. Starting a react project locally:
+    - There are various ways to bootstrap a react project locally. Vite is the most widely used one today. Code- npm create vite@latest
+
+2. Components:
+    - In React, components are the building blocks of the user interface. They allow you to split the UI into independent, reusable pieces that can be thought of as custom, self-contained HTML elements.
+
+3. useState:
+    - The useState hook is one of the fundamental React hooks, used to manage state in functional components. 
+    - It allows a component to have and update internal data that can influence how the UI is rendered.
+    - Syntax:
+        const [state, setState] = useState(initialValue);
+        
+        - Parameters:
+            - initialValue: The initial value of the state variable. It can be a string, number, boolean, object, array, or even null.
+            - state: The current state value.
+            - setState: A function to update the state. When called, it triggers a re-render of the component.
+
+4. Tracking ee-renders: 
+    - Tracking re-renders in a React component helps developers identify unnecessary renders, optimize performance, and understand when and why a component is updating. Here’s an explanation of why re-renders occur, how to track them, and strategies to reduce unnecessary re-renders.
+
+5. useEffect: 
+    - Before we understand useEffect , let’s understand what are Side effects.
+
+    - Side effects:
+    Side effects are operations that interact with the outside world or have effects beyond the component's rendering. Examples include:
+        i.Fetching data from an API.
+        ii. Modifying the DOM manually.
+        iii. Subscribing to events (like WebSocket connections, timers, or browser events).
+        iv. Starting a clock
+    - These are called side effects because they don't just compute output based on the input—they affect things outside the component itself.
+
+
+    - Problem in running side effects in React components:
+        - If you try to introduce side effects directly in the rendering logic of a component (in the return statement or before it), React would run that code every time the component renders. This can lead to:
+            i. Unnecessary or duplicated effects (like multiple API calls).
+            ii. Inconsistent behavior (side effects might happen before rendering finishes).
+            iii. Performance issues (side effects could block rendering or cause excessive re-rendering).
+    - How useEffect Manages Side Effects:
+        - The useEffect hook lets you perform side effects in functional components in a safe, predictable way:
+            - The useEffect hook allows you to perform side effects in function components. Side effects include data fetching, subscriptions, and manually changing the DOM. It ensures the side effect runs at the right time in the component's lifecycle.
+
+6. Props:
+    - In React, props (short for "properties") are a way to pass data from a parent component to a child component. Props are immutable from the perspective of the receiving component, meaning the child component cannot modify them directly. They allow components to be reusable and dynamic.
+    - When to Use Props?
+        - When you want to pass data from a parent to a child component.
+        - When you need a stateless component that renders based on input values (props).
+        - For reusable components: Different props can make a component behave differently.
+
+7. Conditional rendering: 
+    - Conditional rendering in React allows you to render different components or elements based on certain conditions. 
+    - This is similar to using conditional statements in JavaScript, such as if, else, and the ternary operator. Conditional rendering is a powerful feature that helps you create dynamic and responsive user interfaces.
+
+8. Children :
+    - In React, children refer to the elements or components that are passed into a component as props. This feature allows you to create more flexible and reusable components by allowing them to wrap other components or elements. Understanding how to use children is key to leveraging the full power of React's component model.
+
+9. Lists & Keys: 
+    - In React, lists and keys are essential concepts that allow you to efficiently render collections of elements. When displaying multiple items, React needs a way to track each item to optimize rendering and updates. Here's an overview of how to work with lists and keys in React.
+
+10. Inline styling in react:
+    - Inline styling in React allows you to apply CSS styles directly to elements within your components using JavaScript objects. This approach provides a dynamic way to style components based on their state or props. Here’s a comprehensive guide to using inline styles in React.
+
+    - Limitations of Inline Styling:
+        i. No Pseudo-classes: Inline styles do not support CSS pseudo-classes (like :hover, :focus, etc.).
+        ii. No Media Queries: Inline styles cannot respond to media queries.
+        iii. Limited Performance Optimization: Repeatedly creating style objects can lead to unnecessary re-renders, though this is usually minimal.
+
+    - Best Practices:
+        i. Use for Simple Styles: Inline styling is best for simple, dynamic styles that are specific to a single component.
+        ii. Avoid Complex Styles: For complex styles, consider using CSS modules, styled-components, or external stylesheets for better maintainability and readability.
+        iii. Combine with Other Approaches: You can mix inline styles with other CSS strategies to leverage the strengths of each approach.
+
+11. Class based vs functional components:
+    i. Class-Based Components - 
+        - Definition: Class-based components are ES6 classes that extend the React.Component class. They provide a way to create components with their own state and lifecycle methods.
+
+        - Key Features :
+            i. State Management: Class components maintain their own local state.
+            ii. Lifecycle Methods: They have built-in lifecycle methods like componentDidMount, componentDidUpdate, and componentWillUnmount that allow you to perform actions at specific points in a component's lifecycle.
+            iii. This Keyword: Class components rely on the this keyword to access props, state, and methods.
+    
+    ii. Functional Components
+        - Definition: Functional components are simpler JavaScript functions that return JSX. They can use React hooks for state management and side effects.
+
+        - Key Features:
+            i. Stateless by Default: Initially, functional components were stateless. However, with the introduction of hooks in React 16.8, they can now manage state and side effects.
+            ii. Hooks: Functional components can use hooks like useState, useEffect, and custom hooks to manage state and lifecycle events.
+            iii. No this Keyword: There is no need to use the this keyword in functional components, making them easier to read and understand.  
+
+12. Lifecycle events:
+
+    - In React, lifecycle events (or lifecycle methods) refer to the specific points in a component's life where you can execute code in response to changes or actions. These events help you manage tasks such as data fetching, subscriptions, and cleaning up resources.
+
+    - Class-Based Lifecycle Methods:
+        - In class components, lifecycle methods are divided into three main phases:
+            i. Mounting: When the component is being inserted into the DOM.
+                - constructor(): Called when the component is initialized.
+                - componentDidMount(): Called immediately after the component is mounted. Ideal for data fetching.
+            ii. Updating: When the component is being re-rendered due to changes in props or state.
+                - componentDidUpdate(prevProps, prevState): Called after the component has updated. Good for operations based on prop/state changes.
+            iii. Unmounting: When the component is being removed from the DOM.
+                - componentWillUnmount(): Ideal for cleanup tasks, like invalidating timers or canceling network requests.
+
+13. Error boundary:
+    - Error boundaries are React components that catch JavaScript errors in their child component tree and display a fallback UI.
+    - Error boundaries only exist in class based components.
+
+14. Fragment:
+    - In React, a component can return a single parent element, but it can contain multiple children within that single parent
+
+    - Wrong code:
+            const MyComponent = () => {
+                return (
+                    <h1>Hello</h1>
+                    <p>World</p> // This line will cause an error
+                );
+            };
+        ​
+    - Right code:
+        const MyComponent = () => {
+            return (
+                <>
+                    <h1>Hello</h1>
+                    <p>World</p>
+                </>
+            );
+        };
+
+15. Single page applications, routing:
+    - Single Page Applications (SPAs) are a type of web application that loads a single HTML page and dynamically updates the content without requiring a full page reload. This approach provides a smoother user experience and is commonly used in modern web development.
+
+    - Routing in Single Page Applications: Routing in SPAs is crucial for managing navigation between different views or components. Unlike traditional multi-page applications that rely on server-side routing, SPAs use client-side routing to manage navigation.
+
+    - React Router: In React applications, React Router is the most commonly used library for handling routing. It allows you to define multiple routes in your application and render components based on the current URL.
+
+    - Basic Setup of React Router :
+        - Install React Router: To get started, you need to install the react-router-dom package. Code- npm install react-router-dom
+        - Set Up Routes.
+
+    - Benefits of SPAs and Routing
+        i. Performance: SPAs reduce load times as they don’t require full-page reloads. Once the initial HTML, CSS, and JavaScript are loaded, subsequent interactions are faster.
+        ii. User Experience: SPAs provide a seamless experience, akin to desktop applications, with minimal disruptions.
+        iii. Easier to Build: By using client-side routing, developers can manage views and navigation more easily without relying on server-side rendering for every request.
