@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Import the useState hook from react
+import { useState } from "react";
 
+// Create a function component named App that will be rendered in the root element
 function App() {
-  const [count, setCount] = useState(0)
+    // Create a state variable named count and a function to update it named setCount
+    const [count, setCount] = useState(1);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    // Create a function named increaseCount that will increase the count state by 1
+    function increaseCount() {
+        // Call the setCount function to update the count state by 1
+        setCount(count + 1);
+    }
+
+    // return JSX that will be rendered
+    return (
+        <div style={{ background: "#dfe6e9", minHeight: "100vh", padding: 20 }}>
+            {/* Display the count state in a div */}
+            <div
+                style={{
+                    background: "red",
+                    borderRadius: 30,
+                    width: 30,
+                    height: 30,
+                    paddingLeft: 10,
+                    paddingTop: 5,
+                    position: "relative",
+                    left: 12,
+                }}
+            >
+                {count}
+            </div>
+
+            {/* Add an image */}
+            <img
+                src="https://cdn-icons-png.flaticon.com/512/472/472371.png"
+                style={{
+                    width: 30,
+                    height: 30,
+                }}
+            />
+
+            {/* Add a button that will call the increaseCount function when clicked */}
+            <button
+                onClick={increaseCount}
+                style={{
+                    marginLeft: 10,
+                    padding: 10,
+                    borderRadius: 5,
+                    cursor: "pointer",
+                }}
+            >
+                Increase the Count
+            </button>
+        </div>
+    );
 }
 
-export default App
+// Export the App component to use it in the other files
+export default App;
