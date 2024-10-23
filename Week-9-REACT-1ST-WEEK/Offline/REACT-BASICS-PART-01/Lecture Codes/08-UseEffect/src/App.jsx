@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Import the useState and useEffect hooks from react
+import { useState, useEffect } from "react";
 
+// Create a function component named App that will be rendered in the root element
 function App() {
-  const [count, setCount] = useState(0)
+    // Create a state variable named count and a function to update it named setCount
+    const [count, setCount] = useState(0);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    // useEffect hook to update the count state every 5 seconds 
+    useEffect(() => {
+        // setInterval function to update the count state every 5 seconds
+        const interval = setInterval(() => {
+            setCount(prev => prev + 1); // Update the count state by 1
+        }, 1000);
+
+        // Return a cleanup function to clear the interval when the component unmounts
+        return () => clearInterval(interval);
+    }, []); // Empty dependency array to run the effect only once when the component mounts
+
+    // return JSX that will be rendered
+    return (
+        <div>
+            {/* Display the count state in a div */}
+            <div>
+                <h3>Stopwatch in React using useEffect</h3>
+            </div>
+            <div>
+            <h1>{count}</h1>
+            </div>
+        </div>
+    );
 }
 
-export default App
+// Export the App component to use it in the other files
+export default App;
