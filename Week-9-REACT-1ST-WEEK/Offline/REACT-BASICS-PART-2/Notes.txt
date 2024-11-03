@@ -57,6 +57,24 @@ Notes: Continued -->
             ii. Hooks: Functional components can use hooks like useState, useEffect, and custom hooks to manage state and lifecycle events.
             iii. No this Keyword: There is no need to use the this keyword in functional components, making them easier to read and understand.  
 
+        - Example:
+            import React, { useState } from 'react';
+
+            const FunctionalCounter = () => {
+                const [count, setCount] = useState(0);
+                
+                function increment() {
+                    setCount(count => count + 1)
+                }
+
+                return (
+                    <div>
+                        <p>Count: {count}</p>
+                        <button onClick={increment}>Increment</button>
+                    </div>
+                );
+            };
+
 12. Lifecycle events:
 
     - In React, lifecycle events (or lifecycle methods) refer to the specific points in a component's life where you can execute code in response to changes or actions. These events help you manage tasks such as data fetching, subscriptions, and cleaning up resources.
