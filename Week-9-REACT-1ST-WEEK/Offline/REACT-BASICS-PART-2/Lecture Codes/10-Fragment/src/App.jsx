@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Import
+import { Fragment } from "react";
 
+// Create a function component named App that will be rendered in the root element
 function App() {
-  const [count, setCount] = useState(0)
+    // Return the JSX that will be rendered in the browser
+    return (
+        // Wrap the JSX in a Fragment to avoid adding an extra div element to the DOM
+        <>
+            <h1>Hello Baccho!</h1>
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+            {/* Render the MyComponent component */}
+            <MyComponent />
+        </>
+    );
 }
 
-export default App
+// Create a function component named MyComponent that will be rendered in the App component
+const MyComponent = () => {
+    // Return the JSX that will be rendered in the browser
+    return (
+        // Wrap the JSX in a Fragment to avoid adding an extra div element to the DOM
+        <Fragment>
+            <h2>Hello</h2>
+            <p>World</p>
+        </Fragment>
+    );
+};
+
+// Exporting the main App component for use in the application.
+export default App;
