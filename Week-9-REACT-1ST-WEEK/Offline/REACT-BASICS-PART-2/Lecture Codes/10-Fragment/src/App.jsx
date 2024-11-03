@@ -7,7 +7,7 @@ function App() {
     return (
         // Wrap the JSX in a Fragment to avoid adding an extra div element to the DOM
         <>
-            <h1>Hello Baccho!</h1>
+            <h1>Hello!</h1>
 
             {/* Render the MyComponent component */}
             <MyComponent />
