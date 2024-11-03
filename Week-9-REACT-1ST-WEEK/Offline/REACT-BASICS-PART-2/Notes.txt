@@ -19,7 +19,7 @@ Notes: Continued -->
         ii. Avoid Complex Styles: For complex styles, consider using CSS modules, styled-components, or external stylesheets for better maintainability and readability.
         iii. Combine with Other Approaches: You can mix inline styles with other CSS strategies to leverage the strengths of each approach.
 
-11. Class based vs functional components:
+11. Class based vs functional components: {MOST POPULAR REACT INTERVIEW QUESTION}
     i. Class-Based Components - 
         - Definition: Class-based components are ES6 classes that extend the React.Component class. They provide a way to create components with their own state and lifecycle methods.
 
