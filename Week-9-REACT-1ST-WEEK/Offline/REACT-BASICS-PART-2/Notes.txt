@@ -27,7 +27,28 @@ Notes: Continued -->
             i. State Management: Class components maintain their own local state.
             ii. Lifecycle Methods: They have built-in lifecycle methods like componentDidMount, componentDidUpdate, and componentWillUnmount that allow you to perform actions at specific points in a component's lifecycle.
             iii. This Keyword: Class components rely on the this keyword to access props, state, and methods.
-    
+        
+        - Example:
+            import React, { Component } from 'react';
+
+            class ClassCounter extends Component {
+                state = { count: 0 };
+
+                increment = () => {
+                    this.setState({ count: this.state.count + 1 });
+                };
+
+                render() {
+                    return (
+                        <div>
+                            <p>Count: {this.state.count}</p>
+                            <button onClick={this.increment}>Increment</button>
+                        </div>
+                    );
+                }
+            }
+
+            
     ii. Functional Components
         - Definition: Functional components are simpler JavaScript functions that return JSX. They can use React hooks for state management and side effects.
 
