@@ -1,4 +1,4 @@
-Notes: Continued --->
+Notes: Continued -->
 
 8. Children :
     - In React, children refer to the elements or components that are passed into a component as props. This feature allows you to create more flexible and reusable components by allowing them to wrap other components or elements. Understanding how to use children is key to leveraging the full power of React's component model.
