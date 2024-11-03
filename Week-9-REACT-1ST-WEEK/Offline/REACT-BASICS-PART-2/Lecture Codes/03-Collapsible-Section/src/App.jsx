@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Import the useState hook from the react package 
+import { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+// Create a function component named App that will be rendered in the root element
+const App = () => {
+    // Return the JSX that will be rendered in the browser
+    return (
+        // Create a div element with JSX
+        <div>
+            {/* Render two Collapsible components with title and children props */}
+            <Collapsible title="Section 1">
+                <p>This is the content of section 1.</p>
+            </Collapsible>
+            
+            <Collapsible title="Section 2">
+                <p>This is the content of section 2.</p>
+            </Collapsible>
+        </div>
+    );
+};
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+// Create a Collapsible component that will render children elements passed to it as props
+const Collapsible = ({ title, children }) => {
+    // Create a state variable called isOpen and a function setIsOpen to update the state variable 
+    const [isOpen, setIsOpen] = useState(false);
 
-export default App
+    // Return JSX that will be rendered in the browser
+    return (
+        // Create a div element with JSX
+        <div>
+            {/* Create a button element with an onClick event handler that calls setIsOpen with the opposite value of isOpen */}
+            <button onClick={() => setIsOpen(!isOpen)}>
+                {title} {isOpen ? '-' : '+'} {/* Render the title and a plus or minus sign based on the value of isOpen */}
+            </button>
+            
+            {/* Render the children elements if isOpen is true */}
+            {isOpen && <div>{children}</div>}
+        </div>
+    );
+};
+
+// Export the App component as the default export to be used in other files or components
+export default App;
