@@ -11,8 +11,8 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     {/* Define a layout route to include a common layout structure (nav, footer) for all child routes */}
-                    <Route path="/" element={<Layout />}>
-                        <Route path="/" element={<Landing />} /> {/* Define the route for the landing page */}
+                    <Route path="/neet" element={<Layout />}>
+                        <Route path="/neet" element={<Landing />} /> {/* Define the route for the landing page */}
                         <Route path="/neet/online-coaching-class-11" element={<Class11Program />} /> {/* Define the route for the NEET Class 11 program page */}
                         <Route path="/neet/online-coaching-class-12" element={<Class12Program />} /> {/* Define the route for the NEET Class 12 program page */}
                         <Route path="*" element={<ErrorPage />} /> {/* Define a wildcard route to handle 404 errors for unknown paths */}
@@ -40,16 +40,16 @@ function Layout() {
 
     // Return the JSX for the layout component
     return (
-        <div style={{ height: "100vh" }}>
+        <div >
             {/* Navigation section with links to different routes */}
             <nav style={{ background: "yellow" }}>
-                <Link to="/">Allen</Link> |{" "}
+                <Link to="/neet">Allen</Link> |{" "}
                 <Link to="/neet/online-coaching-class-11">Class 11</Link> |{" "}
                 <Link to="/neet/online-coaching-class-12">Class 12</Link>
             </nav>
             
             {/* Main content section with Outlet to render the child routes */}
-            <div style={{ height: "80vh", background: "gray" }}>
+            <div >
                 <Outlet />
             </div>
             
