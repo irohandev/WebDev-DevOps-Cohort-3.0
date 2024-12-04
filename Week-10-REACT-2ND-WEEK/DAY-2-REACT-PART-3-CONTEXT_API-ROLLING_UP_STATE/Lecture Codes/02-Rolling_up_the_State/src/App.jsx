@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Import useState from React
+import { useState } from "react";
 
+// Main App component
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    // Render the Parent component
+    return (
+        <div>
+            <Parent />
+        </div>
+    );
 }
 
-export default App
+// Parent component to manage the count
+function Parent() {
+    // State for count and function to update it
+    const [count, setCount] = useState(0);
+
+    // Render child components
+    return (
+        <div>
+            <Incrase count={count} setCount={setCount} />
+            <Decrease count={count} setCount={setCount} />
+            <Value count={count} />
+        </div>
+    );
+}
+
+// Button to decrease count
+function Decrease({ count, setCount }) {
+    return (
+        <button onClick={() => setCount(count - 1)}>Decrease</button>
+    );
+}
+
+// Button to increase count
+function Incrase({ count, setCount }) {
+    return (
+        <button onClick={() => setCount(count + 1)}>Increase</button>
+    );
+}
+
+// Display the count
+function Value({ count }) {
+    return (
+        <p>Count: {count}</p>
+    );
+}
+
+// Export App component
+export default App;
