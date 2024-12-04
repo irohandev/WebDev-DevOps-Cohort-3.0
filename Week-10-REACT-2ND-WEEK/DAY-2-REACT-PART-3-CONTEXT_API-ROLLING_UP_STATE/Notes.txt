@@ -2,3 +2,9 @@ Notes:
 
 1. Rolling up the state, unoptimal re-renders:
     - As your application grows, you might find that multiple components need access to the same state. Instead of duplicating state in each component, you can lift the state up to the LCA, allowing the common ancestor to manage it.
+
+2. Prop Drilling
+    - Prop drilling happens when data needs to be passed from a higher-level component to a lower-level component that is deeply nested in the component hierarchy. 
+    - This can lead to the following issues:
+        - Complexity: Props may need to go through several intermediate components that don’t actually use the data, just to reach the target component.
+        - Maintenance: Managing changes becomes harder because updates to the props structure require changes in multiple components.
