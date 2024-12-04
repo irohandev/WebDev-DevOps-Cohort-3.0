@@ -8,16 +8,16 @@ const CountContext = createContext();
 function CountContextProvider({children}) {
     
     // Initializing a state variable 'count' with a default value of 0 and a function 'setcount' to update it
-    const [count, setcount] = useState(0);
+    const [count, setCount] = useState(0);
 
     return (
         // Providing the context value to child components
         <CountContext.Provider 
             value={{
                 count,        // The current value of 'count'
-                setcount      // The function to update 'count'
+                setCount      // The function to update 'count'
             }}>
-            {children}     // Rendering child components inside the provider
+            {children}     
         </CountContext.Provider>
     );
 }
