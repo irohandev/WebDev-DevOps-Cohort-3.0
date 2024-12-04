@@ -17,3 +17,5 @@ Notes:
         - Context: Created using React.createContext(). It serves as a container for the data you want to share.
         - Provider: A component that wraps part of your application and provides the context value to all its descendants. Any component that is a child of this Provider can access the context.
         - Consumer: A component that subscribes to context changes. It allows you to access the context value, often using the useContext hook.
+
+4. 
