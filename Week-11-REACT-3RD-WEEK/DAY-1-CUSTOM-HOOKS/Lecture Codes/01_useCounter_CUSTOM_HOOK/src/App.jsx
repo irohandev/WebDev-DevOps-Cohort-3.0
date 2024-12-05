@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Import the useState hook from React to manage state
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Custom hook that encapsulates a counter logic
+function useCounter() {
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  // Declare state variable 'count' and its updater function 'setCount', initialized to 0
+  const [count, setCount] = useState(0);
+
+  // Function to increase the value of 'count' by 1
+  function increaseCount() {
+    setCount(count + 1);
+  }
+
+  // Return the state and the function as an object for external use
+  return { count, increaseCount };
 }
 
-export default App
+// Main application component
+function App() {
+
+  // Render two Counter components
+  return (
+    <>
+      <Counter />
+      <Counter />
+    </>
+  );
+}
+
+// Counter component that uses the custom hook 'useCounter'
+function Counter() {
+  
+  // Destructure 'count' and 'increaseCount' from the custom hook 'useCounter'
+  const { count, increaseCount } = useCounter();
+
+  // Render a button that displays the current count and triggers 'increaseCount' on click
+  return (
+    <>
+      <button onClick={increaseCount}>Increase: {count}</button>
+    </>
+  );
+}
+
+// Export the App component as the default export
+export default App;
+
+
+
+// Notes:
+// Custom hook bhi ek function hai jiska name "use" se shuru hoga aur woh khdh apne andar ek hook ko use krega...
+// Jaise hm programming mai sum() ka program likhtey hai jisse us progrm ko bar bar use kr paye so that same thing the custom hook does..
