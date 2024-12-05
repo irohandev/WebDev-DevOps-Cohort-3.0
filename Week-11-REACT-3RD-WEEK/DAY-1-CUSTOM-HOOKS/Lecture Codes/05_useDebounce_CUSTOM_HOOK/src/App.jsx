@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// Importing necessary hooks from React
+import { useEffect, useState } from "react";
+
+// Importing a custom debounce hook
+import { useDebounce } from "./hooks/useDebounce";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // State to store the value of the input field
+  const [inputVal, setInputVal] = useState("");
+
+  // Using the custom debounce hook to delay the update of the input value
+  const debouncedValue = useDebounce(inputVal, 200);
+
+  // Function to handle changes in the input field
+  function change(e) {
+    setInputVal(e.target.value); // Updates the input value in state
+  }
+
+  // useEffect runs whenever the debouncedValue changes
+  useEffect(() => {
+    console.log("Exclusive Operation"); // Perform an operation based on the debounced value
+  }, [debouncedValue]); // Dependency array ensures this effect runs only when debouncedValue changes
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* Input field to capture user input */}
+      <input type="text" onChange={change}></input>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
+
+// Notes:
+// Debounce ek technique hai jo kisi function ke execution ko delay karti hai jab tak ek certain time period complete na ho jaye. Yeh uss situation mein kaam aata hai jab aapko frequent user actions (jaise typing, scrolling, resize events, etc.) ko optimize karna hota hai. React mein debounce ko implement karne ke liye custom hooks ka use kiya jata hai.
