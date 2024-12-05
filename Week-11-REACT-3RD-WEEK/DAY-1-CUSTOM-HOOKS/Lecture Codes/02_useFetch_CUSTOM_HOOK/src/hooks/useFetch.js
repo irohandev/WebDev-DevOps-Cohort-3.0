@@ -23,3 +23,29 @@ export function usePostTitle() {
   return post.title;
 
 }
+
+
+export function useFetch(url) {
+
+  // State to store the data fetched from the API
+  const [finalData, setFinalData] = useState({});
+
+  // Function to fetch data from the provided URL
+  async function getDetails() {
+
+    const response = await fetch(url); // Make an API call to the provided URL
+    const json = await response.json(); // Parse the response into JSON format
+    setFinalData(json) // Store the parsed data in the state
+  }
+
+  // useEffect ensures the fetch function runs when the component using this hook mounts
+  useEffect(() => {
+    getDetails(); // Trigger the API call
+  }, []); // Empty dependency array ensures the effect runs only once on mount
+
+  // Return the fetched data for use in the calling component
+  return finalData;
+}
+
+
+

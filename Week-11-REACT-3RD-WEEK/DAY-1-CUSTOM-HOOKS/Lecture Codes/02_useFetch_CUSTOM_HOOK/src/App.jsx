@@ -36,17 +36,38 @@
 
 
 
-// Method - 2: Using a custom Hook to handle data fetching
+// // Method - 2: Using a custom Hook in a separate file to handle data fetching
 
-import { usePostTitle } from "./hooks/useFetch"; // Importing the custom hook for fetching post title
+// import { usePostTitle } from "./hooks/useFetch"; // Importing the custom hook for fetching post title
+
+// function App() {
+//   // Calling the custom hook to fetch the post title
+//   const postTitle = usePostTitle();
+
+//   return (
+//     <>
+//       <h2>{postTitle} </h2>{/* Display the fetched post title */}
+//     </>
+//   );
+// }
+
+// export default App;
+
+
+// Method - 3: Creating a custom Hook in a separate file and passing the URL to the hook. 
+// The URL is provided in the App component and used in the custom hook.
+
+import { useFetch } from "./hooks/useFetch"; // Importing the custom hook for data fetching
 
 function App() {
-  // Calling the custom hook to fetch the post title
-  const postTitle = usePostTitle();
+  // Calling the custom hook and passing the API URL
+  // The hook fetches the data and returns it as `finalData`
+  const { finalData } = useFetch("https://jsonplaceholder.typicode.com/posts/1");
 
   return (
     <>
-      <h2>{postTitle} </h2>{/* Display the fetched post title */}
+      {/* Displaying the fetched data in string format */}
+      <h1>{JSON.stringify(finalData)}</h1>
     </>
   );
 }
