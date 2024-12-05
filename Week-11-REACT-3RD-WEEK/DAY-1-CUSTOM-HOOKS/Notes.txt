@@ -6,3 +6,4 @@ Notes:
     - Why Use Custom Hooks?
         - Reusability: If you find yourself using the same logic in multiple components, a custom hook can help you avoid code duplication.
         - Separation of Concerns: They allow you to separate business logic from UI logic, making your components more focused and easier to understand.
+    - We cannot use a hooks inside a fucntion so that's why we create custom hooks for removing this issue and create new custom hooks which start from "use" . 
