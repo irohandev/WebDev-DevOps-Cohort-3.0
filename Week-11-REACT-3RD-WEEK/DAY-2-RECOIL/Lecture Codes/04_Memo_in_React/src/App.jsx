@@ -1,75 +1,75 @@
-// Importing required React hooks and memo for optimization
+// Import necessary hooks and utilities from React
 import { useState, useEffect, memo } from "react";
-import "./App.css";
 
-// Main App component rendering the Counter component
+// Main App component that will render the root structure
 function App() {
-  return (
-    <>
-      <Counter />
-    </>
-  );
+    return (
+        <div>
+            {/* Render the Counter component */}
+            <Counter />
+        </div>
+    );
 }
 
-// Counter component that manages the count state and contains the child components
+// Counter component manages the count state and includes logic for auto-increment
 function Counter() {
-  // State to hold the current count value
-  const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
 
-  // useEffect to set up an interval that increments the count every 3 seconds
-  useEffect(() => {
-    // Setting up an setInterval to update the count
-    setInterval(() => {
-      setCount(c => c + 1); // Incrementing the count
-    }, 3000);
-  }, []);
+    // useEffect to set up an interval that increments count every 3 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCount((c) => c + 1); // Increment count by 1
+        }, 3000);
 
-  return (
-    <>
-      {/* Displaying the current count */}
-      <CurrentCount />
-      {/* Button to increase the count */}
-      <Increase />
-      {/* Button to decrease the count */}
-      <Decrease />
-    </>
-  );
+        // Cleanup the interval on component unmount
+        return () => clearInterval(interval);
+    }, []); // Empty dependency array ensures effect runs only once
+
+    return (
+        <div>
+            {/* Display the current count */}
+            <CurrentCount count={count} />
+
+            {/* Render Increase and Decrease components with setCount passed as a prop */}
+            <Increase setCount={setCount} />
+            <Decrease setCount={setCount} />
+        </div>
+    );
 }
 
-// Display the current count value
-const CurrentCount = memo(function () {
-  // `memo` prevents unnecessary re-renders if the count value doesn't change
-  return (
-    <>
-      <h1>1</h1> {/* Placeholder for current count */}
-    </>
-  );
+// Memoized component to display the current count
+const CurrentCount = memo(function ({ count }) {
+    return (
+        // Display the count value
+        <h1>{count}</h1>
+    );
 });
 
-// Button to increase the count value
-const Increase = memo(function () {
-  // Function to handle the increase action (not implemented yet)
-  function IncreaseCount() {}
+// Memoized component for decreasing the count
+const Decrease = memo(function ({ setCount }) {
+    function decrease() {
+        setCount((c) => c - 1); // Decrease count by 1
+    }
 
-  return (
-    <>
-      <button onClick={IncreaseCount}>Increase</button>
-    </>
-  );
+    return (
+        // Button to decrease the count
+        <button onClick={decrease}>Decrease</button>
+    );
 });
 
-// Button to decrease the count value
-const Decrease = memo(function () {
-  // Function to handle the decrease action (not implemented yet)
-  function DecreaseCount() {}
+// Memoized component for increasing the count
+const Increase = memo(function ({ setCount }) {
+    function increase() {
+        setCount((c) => c + 1); // Increase count by 1
+    }
 
-  return (
-    <>
-      <button onClick={DecreaseCount}>Decrease</button>
-    </>
-  );
+    return (
+        // Button to increase the count
+        <button onClick={increase}>Increase</button>
+    );
 });
 
+// Export the App component as the default export
 export default App;
 
 /*
