@@ -1,6 +1,7 @@
 Notes:
 
-1.Recoil Overview
+1.Recoil :
+
     - Recoil is a library designed to handle state management in React applications. It offers a way to manage global state efficiently while giving you detailed control over which parts of the application respond to state changes.
 
     - One of its key advantages is reducing unnecessary component re-renders. Recoil ensures that only the components directly relying on updated pieces of state, called atoms, are re-rendered when changes occur.
@@ -39,17 +40,26 @@ Notes:
         - Context API: Straightforward to learn and use, as it’s integrated into React’s ecosystem.
 
 3. What is an Atom in Recoil?
+
     - Basic Unit of State: Represents a single piece of shared data in the application.
     - Shared and Reactive: Can be accessed and updated by multiple components; triggers re-renders only in components using it.
     - Independent: Atoms are separate and don’t affect each other unless linked through logic like selectors.
     - Persistence: Can integrate with storage solutions (e.g., localStorage) for saving and restoring state.
     -Use Cases: Ideal for managing global state, ensuring efficient updates, and breaking down complex state into manageable parts.
 
-4. Selectors in Recoil
+4. Selectors in Recoil :
+
     - Derived State: Selectors compute values dynamically based on atoms or other selectors, avoiding the need to store redundant state.
     - Centralized Logic: They centralize complex computations, ensuring consistent data across components.
     - Caching: Recoil caches selector results, recomputing only when their dependencies change, improving performance.
     - Composable: Selectors can depend on other selectors, enabling modular and layered state logic.
     - Efficient Updates: Components subscribing to a selector re-render only when its inputs (atoms/selectors) change.
     - In essence, selectors make state management more efficient, maintainable, and scalable.
-        
+
+5. Memo :
+    - The memo function in React is a higher-order component (HOC) that helps optimize the performance of functional components. When you wrap a component with memo, React will memoize the component’s output based on its props. This means that React will skip re-rendering the component if its props haven't changed since the last render.
+
+    - How memo Works:
+        - Initial Render: When the component is rendered for the first time, memo stores the result of the component's render.
+        - Subsequent Renders: On subsequent renders, React checks if the props passed to the component have changed. If they are the same as before, React will use the memoized result and skip the rendering process, improving performance.
+        - When Props Change: If the props have changed, React will re-render the component and update the memoized output.
