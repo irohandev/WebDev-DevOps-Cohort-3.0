@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { RecoilRoot, useRecoilState } from "recoil";
+import { todosAtomFamily } from './store/atom';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <RecoilRoot>
+      {/* Rendering Todo components with different IDs (1 and 2) */}
+      <Todo id={1}/>  
+      <Todo id={2}/>
+    </RecoilRoot>
+  );
 }
 
-export default App
+
+// 'id' is passed as a prop, like how 1 is passed above, so it will give the output for the todo with ID 1
+function Todo({id}){   
+
+  // 'todosAtomFamily' fetches the todo data based on the 'id' from the state   
+  const [todo, setTodo] = useRecoilState(todosAtomFamily(id));  
+   
+  return (
+    <>
+      {/* Displaying the title of the todo */}
+      {todo.title} 
+      {/* Displaying the description of the todo */}
+      {todo.description}
+      <br/>
+    </>
+  );
+}
+
+export default App;
