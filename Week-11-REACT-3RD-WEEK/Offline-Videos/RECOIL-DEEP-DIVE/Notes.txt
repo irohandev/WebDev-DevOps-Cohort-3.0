@@ -1,0 +1,59 @@
+Notes:
+
+1. Atoms in Recoil
+    - Atoms are the building blocks of state in Recoil. They represent a piece of state that can be shared across components. When an atom's value changes, all components that subscribe to it automatically re-render.
+    - Atoms are read and written directly.
+    - They are persistent across the component tree and provide a single source of truth.
+
+    - Key Features:
+        - Default Value: Atoms have an initial value.
+        - Subscription: Components that use the atom re-render whenever its state changes.
+        - Isolation: Atoms are independent; modifying one does not affect others unless explicitly linked.
+
+
+2. Selectors in Recoil
+    - A selector is a derived state that depends on atoms or other selectors. It can be considered as a computed value or a function of state.
+    - Selectors calculate their value based on dependencies (atoms or other selectors).
+    - Recoil automatically tracks the dependencies of a selector and recalculates it when those dependencies change.
+    
+    - Key Features:
+        - Get Function: Used to define how the selector calculates its value based on its dependencies.
+        - Set Function: (Optional) Allows writing to atoms or other selectors through the selector.
+
+
+3. Asynchronous Data Queries in Recoil
+    - Recoil allows selectors to handle asynchronous data fetching seamlessly.
+    - Selectors can return a Promise, enabling Recoil to manage loading and error states automatically.
+    - This makes it easier to work with APIs or other asynchronous data sources directly within the state management layer.
+
+    - Key Concepts:
+        - Use async/await inside the selector's get function to fetch data.
+        - Recoil supports loadable states (described below) to handle asynchronous operations gracefully.
+
+
+4. Atom Family in Recoil
+    - An atom family is a dynamic way to create atoms with similar properties but different values, based on unique parameters.
+    - Instead of defining multiple static atoms, an atom family allows you to create instances of atoms on-the-fly.
+    - It’s especially useful for managing lists or collections where each item needs its own state.
+    
+    - Key Features:
+        - Parameterized atoms generated dynamically.
+        - Can share similar configuration but hold different values.
+
+
+5. Selector Family in Recoil
+    - A selector family is similar to an atom family but is used for derived state.
+    - It creates parameterized selectors, which allow you to compute values based on parameters dynamically.
+    - This is helpful for creating reusable logic where the derived state depends on specific inputs.
+    - Example Use Case: Fetching user-specific data where the parameter is the userId.
+
+
+6. Loadables in Recoil
+    - Loadables are a Recoil-specific abstraction for managing the states of asynchronous selectors.
+    - A loadable represents one of the following states:
+        - HasValue: The data is successfully fetched, and the value is available.
+        - HasError: An error occurred while fetching the data.
+        - Loading: The data is still being fetched.
+    - Usage:
+        - Loadables allow you to manage UI states (e.g., loading spinners or error messages) effectively while working with asynchronous selectors.
+        - They enable fine-grained control over how the app reacts to the different phases of async operations.
