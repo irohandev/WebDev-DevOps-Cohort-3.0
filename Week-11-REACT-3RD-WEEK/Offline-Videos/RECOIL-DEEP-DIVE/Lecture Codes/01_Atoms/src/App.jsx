@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// Import CSS and necessary Recoil functions
 import './App.css'
+import { RecoilRoot, useRecoilValue, useSetRecoilState } from 'recoil'
+import { netwrokAtom, jobsAtom, notificationsAtom, messagingAtom } from './store/atom'
 
+// Main App component wrapped in RecoilRoot to enable Recoil state management
 function App() {
-  const [count, setCount] = useState(0)
+  return (
+    <RecoilRoot>
+      <div>
+        <Wrapper />
+      </div>
+    </RecoilRoot>
+  )
+}
+
+// Wrapper component to display buttons with state-driven content
+function Wrapper() {
+  const networkAtomCount = useRecoilValue(netwrokAtom); // Read the current state of networkAtom
+  const jobsAtomCount = useRecoilValue(jobsAtom); // Read the current state of jobsAtom
+  const notificationAtomCount = useRecoilValue(notificationsAtom); // Read notifications state
+  const messagingAtomCount = useRecoilValue(messagingAtom); // Read messaging state
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <>  
+      <button>Home</button>
+      <button>My Network {networkAtomCount >= 100 ? "99+" : networkAtomCount}</button> {/* Conditional display for count */}
+      <button>Jobs {jobsAtomCount}</button>
+      <button>Messaging {messagingAtomCount}</button>
+      <button>Notifications {notificationAtomCount}</button>
+      <UpdateButton /> {/* Button to update messaging state */}
     </>
   )
 }
 
-export default App
+// Component to update messaging count
+function UpdateButton() {
+  const setMessagingAtomCount = useSetRecoilState(messagingAtom) // Setter for messagingAtom
+
+  return (
+    // Render a button that updates the messagingAtom count when clicked
+    <button
+        onClick={() => {
+            // Increment the messagingAtom count by 1
+            setMessagingAtomCount((count) => count + 1);
+        }}
+    >Me</button>
+);
+}
+
+export default App;
