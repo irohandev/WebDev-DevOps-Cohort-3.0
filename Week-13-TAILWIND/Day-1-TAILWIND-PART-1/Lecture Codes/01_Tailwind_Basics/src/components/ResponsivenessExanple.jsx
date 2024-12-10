@@ -8,6 +8,7 @@ function ResponsivenessExample() {
             </h2>
 
             {/* Responsive background color changes based on screen size */}
+            {/* Here, the screen size specifies that if the screen is larger than 'xl', this color will be applied; if it's larger than 'md', this color will be applied. Unlike the usual behavior where 'xl' applies only at that size, Tailwind handles it slightly differently. */}
             <div className="xl:bg-yellow-300 md:bg-green-300 sm:bg-blue-300 bg-red-300 p-2">
                 Hi
             </div>
