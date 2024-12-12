@@ -65,4 +65,5 @@ Notes:
             console.log(x);
 
     - Step 4 - Compile the ts file to js file
-        tsc -b
+        tsc - b / npx tsc -b {if ts not installed globally}
+
