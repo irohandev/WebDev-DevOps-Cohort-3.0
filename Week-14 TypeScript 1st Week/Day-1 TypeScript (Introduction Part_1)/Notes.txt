@@ -67,3 +67,23 @@ Notes:
     - Step 4 - Compile the ts file to js file
         tsc - b / npx tsc -b {if ts not installed globally}
 
+4. The tsconfig file:
+    - The tsconfig file has a bunch of options that you can change to change the compilation process.
+    - Some of these include:
+        1. target
+            The target option in a tsconfig.json file specifies the ECMAScript target version to which the TypeScript compiler will compile the TypeScript code.
+            To try it out, try compiling the following code for target being ES5 and es2020
+            
+        2. rootDir
+            Where should the compiler look for .ts files. Good practise is for this to be the src folder
+        
+        3. outDir
+            Where should the compiler look for spit out the .js files.
+        
+        4. noImplicitAny
+            Try enabling it and see the compilation errors on the following code - 
+            const greet = (name) => `Hello, ${name}!`;
+
+        5. removeComments
+            Weather or not to include comments in the final js file
+    

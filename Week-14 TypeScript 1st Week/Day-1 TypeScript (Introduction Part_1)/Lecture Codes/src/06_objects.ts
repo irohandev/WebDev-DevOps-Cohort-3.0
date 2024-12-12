@@ -1,5 +1,8 @@
 // Function to greet a user by printing a message with their name and age
-function wish(user: { name: string; age: number }) {
+function wish(user: {
+    name: string; 
+    age: number 
+    }) {
     // Log a greeting message with the user's name and age
     console.log(`Hello ${user.name}, you are ${user.age} years old.`);
 }
