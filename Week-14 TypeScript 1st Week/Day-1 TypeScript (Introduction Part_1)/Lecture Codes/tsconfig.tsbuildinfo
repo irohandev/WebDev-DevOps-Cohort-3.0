@@ -1,1 +1,1 @@
-{"root":["./src/01_first.ts"],"version":"5.7.2"}
+{"root":["./src/01_first.ts","./src/02_greetuser.ts","./src/03_sumoftwonumber.ts","./src/04_checkagefunction.ts","./src/05_delayedfunction.ts","./src/06_objects.ts","./src/07_interfaces.ts","./src/08_types.ts"],"version":"5.7.2"}
