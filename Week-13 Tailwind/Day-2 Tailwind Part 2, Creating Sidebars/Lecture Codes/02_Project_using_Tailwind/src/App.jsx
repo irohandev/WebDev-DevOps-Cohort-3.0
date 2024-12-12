@@ -1,35 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import { Sidebar } from './components/Localsidebar';
+import { SidebarToggle } from './components/SidebarToggle';
+
+const useMediaQuery = (query) => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    if (media.matches !== matches) {
+      setMatches(media.matches);
+    }
+    const listener = () => setMatches(media.matches);
+    media.addListener(listener);
+    return () => media.removeListener(listener);
+  }, [matches, query]);
+
+  return matches;
+};
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [sidebarOpen, setSidebarOpen] =  useState(true);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+
+  console.error(isDesktop)
+  
+  useEffect(() => {
+    if (isDesktop == false) {
+      setSidebarOpen(false)
+    } else {
+      setSidebarOpen(true)
+    }
+  }, [isDesktop])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='flex'>
+      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <MainContent sidebarOpen={sidebarOpen} />
+    </div>
   )
+}
+
+function LocalSidebar({sidebarOpen, setSidebarOpen}) {
+  if (!sidebarOpen) {
+    return <div className='fixed top-0 left-0'>
+        <div className='cursor-pointer hover:bg-slate-200' onClick={() => {
+          setSidebarOpen(!sidebarOpen)
+        }}>
+          <SidebarToggle />
+        </div>
+    </div>
+  }
+    return <div className='w-96 h-screen bg-red-100 fixed top-0 left-0 md:relative'>
+    <div>
+      <div className='cursor-pointer hover:bg-slate-200' onClick={() => {
+        setSidebarOpen(!sidebarOpen)
+      }}>
+        <SidebarToggle />
+      </div>
+    </div>
+  </div>
+}
+
+function MainContent() {
+  return  <div className='w-full'>
+    <div className='h-72 bg-black hidden md:block'></div>
+    <div className='grid grid-cols-11 gap-8 p-8'>
+      <div className='h-96 rounded-2xl shadow bg-red-200 md:col-span-2 -translate-y-24 shadow-lg  col-span-11 hidden md:block'>
+
+      </div>
+      <div className='h-96 rounded-2xl shadow bg-green-200 md:col-span-6 shadow-lg col-span-11'>
+
+      </div>
+      <div className='h-96 rounded-2xl shadow bg-yellow-200 md:col-span-3 shadow-lg col-span-11'>
+
+      </div>
+    </div>
+  </div>
 }
 
 export default App
