@@ -1,0 +1,69 @@
+Notes:
+
+1. Types of languages:
+    i. Strongly typed vs loosely typed : The terms strongly typed and loosely typed refer to how programming languages handle types, particularly how strict they are about type conversions and type safety.
+            - Strongly typed languages:
+                - Examples - Java, C++, C, Rust
+                - Benefits - 
+                    i. Lesser runtime errors
+                    ii. Stricter codebase
+                    iii. Easy to catch errors at compile time
+
+                    Example - Code doesn’t work ❌
+                        #include <iostream>
+                        int main() {
+                        int number = 10;
+                        number = "text";
+                        return 0;
+                        }
+
+            - Loosely typed languages
+                - Examples - Python, Javascript, Perl, php
+                - Benefits
+                    i. Easy to write code
+                    ii. Fast to bootstrap
+                    iii. Low learning curve
+                    
+                    Example: Code does work ✅
+                        function main() {
+                        let number = 10;
+                        number = "text";
+                        return number;
+                        }
+            
+            - People realised that javascript is a very power language, but lacks types. Typescript was introduced as a new language to add types on top of javascript.
+
+2. What is Typescript ?
+    i. Definition:
+        - TypeScript is a programming language developed and maintained by Microsoft. 
+        - It is a strict syntactical superset of JavaScript and adds optional static typing to the language.
+
+    ii. Where/How does typescript code run?
+        - Typescript code never runs in your browser. Your browser can only understand javascript. 
+        - Javascript is the runtime language (the thing that actually runs in your browser/nodejs runtime)
+        - Typescript is something that compiles down to javascript
+        - When typescript is compiled down to javascript, you get type checking (similar to C++). If there is an error, the conversion to Javascript fails. 
+
+    iii. Typescript compiler
+        - tsc is the official typescript compiler that you can use to convert Typescript code into Javascript
+        - There are many other famous compilers/transpilers for converting Typescript to Javascript. Some famous ones are - 
+            I. esbuild
+            II. swc
+
+3. The tsc Compiler:
+    
+    - Step 1 - Install tsc/typescript globally:
+        npm install -g typescript
+
+    - Step 2 - Initialize an empty Node.js project with typescript:
+        npm init -y
+        npx tsc --init
+        These commands should initialize two files in your project - package.json, tsconfig.json
+    
+    - Step 3 - Create a a.ts file:
+        Program for that as an example - 
+            const x: number = 1;
+            console.log(x);
+
+    - Step 4 - Compile the ts file to js file
+        tsc -b
