@@ -50,8 +50,7 @@ Notes:
             I. esbuild
             II. swc
 
-3. The tsc Compiler:
-    
+3. The tsc Compiler:    
     - Step 1 - Install tsc/typescript globally:
         npm install -g typescript
 
