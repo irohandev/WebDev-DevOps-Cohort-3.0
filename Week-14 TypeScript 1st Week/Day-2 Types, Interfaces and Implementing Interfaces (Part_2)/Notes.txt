@@ -5,7 +5,18 @@
    - They support multiple inheritance, allowing a class or another interface to inherit from multiple interfaces.  
    - Classes can implement interfaces, meaning they must define all the properties and methods specified in the interface.  
 
-2. Interface vs Abstract Class:  
+2. Difference Between `implements` and `extends` in TypeScript:  
+  - `implements`:  
+    - Used by a class to implement an interface.  
+    - A class must provide implementation for all methods and properties declared in the interface.  
+    - A class can implement multiple interfaces.  
+  - `extends`:  
+    - Used by a class to inherit from another class or by an interface to extend another interface.  
+    - A class inherits the implementation and properties of a parent class.  
+    - An interface can extend multiple other interfaces.  
+    - A class can only extend one class, but it can implement multiple interfaces.  
+
+3. Interface vs Abstract Class:  
    - Interfaces:  
      - They are used to define the structure of an object or a contract for classes to follow.  
      - Interfaces cannot have constructors or concrete (implemented) methods.  
@@ -19,7 +30,7 @@
      - A class can implement multiple interfaces but can extend only one abstract class.  
      - Abstract classes are a mix of implementation and abstraction, whereas interfaces are purely abstract.  
 
-3. Types in TypeScript:  
+4. Types in TypeScript:  
    - Primitive Types:  
      - These include basic types such as `string`, `number`, `boolean`, `null`, and `undefined`.  
      - They represent single, immutable values.  
@@ -32,7 +43,7 @@
      - `void`: Used for functions that do not return any value.  
      - `never`: Represents values that never occur, such as functions that always throw errors or have infinite loops.  
 
-4. Array in TypeScript:  
+5. Array in TypeScript:  
    - An array is a collection of elements of the same type stored together.  
    - It allows storing and manipulating a list of values.  
    - Arrays can be declared using square brackets (e.g., `number[]`) or the `Array` type (e.g., `Array<number>`).  
