@@ -1,0 +1,40 @@
+1. Interface in TypeScript:  
+   - An interface defines the structure of an object by specifying the expected properties and methods.  
+   - It is used to ensure type safety and for type-checking in TypeScript.  
+   - Interfaces only define the blueprint and do not provide any implementation.  
+   - They support multiple inheritance, allowing a class or another interface to inherit from multiple interfaces.  
+   - Classes can implement interfaces, meaning they must define all the properties and methods specified in the interface.  
+
+2. Interface vs Abstract Class:  
+   - Interfaces:  
+     - They are used to define the structure of an object or a contract for classes to follow.  
+     - Interfaces cannot have constructors or concrete (implemented) methods.  
+     - They support multiple inheritance, allowing classes to implement multiple interfaces.  
+   - Abstract Classes:  
+     - Abstract classes can include both abstract methods (without implementation) and concrete methods (with implementation).  
+     - They can have constructors, allowing for initialization logic.  
+     - Abstract classes support single inheritance, meaning a class can only extend one abstract class.  
+   - Key Differences:  
+     - Interfaces focus solely on defining structure, while abstract classes can include implementation.  
+     - A class can implement multiple interfaces but can extend only one abstract class.  
+     - Abstract classes are a mix of implementation and abstraction, whereas interfaces are purely abstract.  
+
+3. Types in TypeScript:  
+   - Primitive Types:  
+     - These include basic types such as `string`, `number`, `boolean`, `null`, and `undefined`.  
+     - They represent single, immutable values.  
+   - Complex Types:  
+     - Types such as `array`, `object`, `tuple`, and `enum` are considered complex types.  
+     - They allow grouping multiple related values together.  
+   - Special Types:  
+     - `any`: Can hold values of any type, offering maximum flexibility but less type safety.  
+     - `unknown`: Similar to `any` but requires a type assertion or check before use.  
+     - `void`: Used for functions that do not return any value.  
+     - `never`: Represents values that never occur, such as functions that always throw errors or have infinite loops.  
+
+4. Array in TypeScript:  
+   - An array is a collection of elements of the same type stored together.  
+   - It allows storing and manipulating a list of values.  
+   - Arrays can be declared using square brackets (e.g., `number[]`) or the `Array` type (e.g., `Array<number>`).  
+   - They support several built-in methods like `push` (to add an element), `pop` (to remove the last element), `map` (to transform each element), and more.  
+
