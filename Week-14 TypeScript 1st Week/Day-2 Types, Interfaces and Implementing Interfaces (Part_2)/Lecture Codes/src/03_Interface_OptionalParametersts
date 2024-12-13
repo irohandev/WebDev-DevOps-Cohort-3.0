@@ -1,0 +1,23 @@
+interface User {
+    name: string; 
+    age: number; 
+    address?: {
+        city: string; 
+        country: string; 
+        pincode: number; 
+    };
+}
+
+let user: User = {
+    name: "Rohan Dev", 
+    age: 23, 
+    address: { 
+        city: "Panagarh", 
+        country: "India", 
+        pincode: 713148 
+    }
+};
+
+if (user.age > 18) {
+    console.log("User is an adult!");
+}
