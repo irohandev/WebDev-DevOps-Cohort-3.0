@@ -1,0 +1,44 @@
+1. Pick in TypeScript:  
+   - The `Pick` utility type allows you to create a new type by picking a set of properties from an existing type.  
+   - It takes two arguments: the original type and the keys to pick.  
+   - Useful for creating types that contain only a subset of the properties of another type.  
+   
+2. Partial in TypeScript:  
+   - The `Partial` utility type makes all properties of a given type optional.  
+   - It allows you to create a type where none of the properties are required.  
+   - Useful when you need to modify an object incrementally or only provide some of the properties.  
+
+3. Readonly in TypeScript:  
+   - The `Readonly` utility type makes all properties of a given type immutable.  
+   - Once an object is marked as `readonly`, its properties cannot be reassigned.  
+   - Useful for preventing accidental modifications to objects.  
+
+4. Record in TypeScript:  
+   - The `Record` utility type allows you to create an object type with a specific set of keys and values.  
+   - It takes two parameters: a set of keys (usually a union type) and the type of the values.  
+   - Helps create types where the keys are known but the values can be of a specific type.  
+   
+5. Maps in TypeScript:  
+   - A `Map` is a built-in object that stores key-value pairs.  
+   - The keys and values can be of any type.  
+   - Maps preserve the insertion order of elements and provide methods like `set`, `get`, and `has` to interact with data.  
+   - Unlike objects, maps allow keys to be of any type, not just strings or symbols.  
+
+6. Exclude in TypeScript:  
+   - The `Exclude` utility type creates a new type by excluding certain types from a union type.  
+   - It takes two parameters: a union type and a type to exclude.  
+   - Useful for removing unwanted types from a union type.  
+
+7. Type Inference using Zod in TypeScript:  
+   - Zod is a TypeScript-first schema declaration and validation library that helps with type inference.  
+   - It provides a way to define a schema for data validation and automatically infers TypeScript types from the schema.  
+   - Zod schemas are highly composable and provide excellent type safety during runtime validation.  
+   - It is often used in scenarios where input data must be validated (e.g., API responses, form data).  
+   - Zod automatically infers types from defined schemas, reducing the need for manual type annotations.  
+   - Example of Zod type inference:  
+        import { z } from 'zod';  
+        const userSchema = z.object({  
+        name: z.string(),  
+        age: z.number().int().min(18),  
+        });  
+        type User = z.infer<typeof userSchema>;  
