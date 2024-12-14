@@ -1,0 +1,1 @@
+{"root":["./src/01_pick.ts","./src/02_partial.ts","./src/03_readonly.ts","./src/04_records.ts","./src/05_map.ts","./src/06_exclude.ts","./src/07_typeinference_in_zod.ts"],"errors":true,"version":"5.7.2"}
