@@ -1,1 +1,1 @@
-{"root":["./src/config.ts","./src/db.ts","./src/index.ts","./src/middleware.ts","./src/utils.ts"],"errors":true,"version":"5.7.2"}
+{"root":["./src/config.ts","./src/db.ts","./src/index.ts","./src/middleware.ts","./src/override.d.ts","./src/utils.ts"],"version":"5.7.2"}
