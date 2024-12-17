@@ -1,83 +1,66 @@
-// Importing necessary modules
-import express from "express";  // Express is a web framework for Node.js
-import mongoose from "mongoose";  // Mongoose is an ODM (Object Data Modeling) library for MongoDB
-import jwt from "jsonwebtoken";  // JWT is used for generating and verifying JSON Web Tokens
-import { ContentModel, UserModel } from "./db";  // Importing models for users and content
-import { JWT_SECRET } from "./config";  // Importing the secret key for JWT
-import { userMiddleware } from "./middleware";  // Middleware to authenticate users
+import express from "express";
+import { random } from "./utils";
+import jwt from "jsonwebtoken";
+import { ContentModel, LinkModel, UserModel } from "./db";
+import { JWT_SECRET } from "./config";
+import { userMiddleware } from "./middleware";
+import cors from "cors";
 
-// Initialize the Express app
 const app = express();
+app.use(express.json()); // Middleware to parse JSON request bodies.
+app.use(cors()); // Middleware to allow cross-origin requests.
 
-// Middleware to parse incoming JSON requests
-app.use(express.json());
-
-// Route to handle user signup
+// Route 1: User Signup
 app.post("/api/v1/signup", async (req, res) => {
-    // Extract username and password from the request body
+    // TODO: Use zod or a similar library for input validation.
+    // TODO: Hash the password before storing it in the database.
     const username = req.body.username;
     const password = req.body.password;
 
     try {
-        // Create a new user in the database
-        await UserModel.create({
-            username,
-            password    
-        });
-        res.json({ message: "User Created" });  // Respond with success message
+        // Create a new user with the provided username and password.
+        await UserModel.create({ username, password });
+        res.json({ message: "User signed up" }); // Send success response.
     } catch (e) {
-        // Handle duplicate user error
-        res.status(400).json({ message: "User Already Exist!" });
+        // Handle errors like duplicate usernames.
+        res.status(409).json({ message: "User already exists" }); // Conflict status.
     }
 });
 
-// Route to handle user sign-in
+// Route 2: User Signin
 app.post("/api/v1/signin", async (req, res) => {
-    const username = req.body.username;  // Get username from request body
-    const password = req.body.password;  // Get password from request body
+    const username = req.body.username;
+    const password = req.body.password;
 
-    // Find the user in the database
-    const existingUser = await UserModel.findOne({
-        username,
-        password,
-    });
-
+    // Find a user with the provided credentials.
+    const existingUser = await UserModel.findOne({ username, password });
     if (existingUser) {
-        // Generate a JWT token for the authenticated user
-        const token = jwt.sign(
-            { id: existingUser._id }, // Payload contains user ID
-            JWT_SECRET  // Secret key to sign the token
-        );
-        res.json({ token });  // Send the token as response
+        // Generate a JWT token with the user's ID.
+        const token = jwt.sign({ id: existingUser._id }, JWT_SECRET);
+        res.json({ token }); // Send the token in response.
     } else {
-        // Handle invalid credentials
-        res.status(400).json({ message: "Invalid Credentials!" });
+        // Send error response for invalid credentials.
+        res.status(403).json({ message: "Incorrect credentials" });
     }
 });
 
-// Route to handle content creation
+// Route 3: Add Content
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
-    const link = req.body.link;  // Get the content link from request body
-    const type = req.body.type;  // Get the content type from request body
-    const title = req.body.title;  // Get the content title from request body
-
-    // Create a new content entry in the database
+    const { link, type, title } = req.body;
+    // Create a new content entry linked to the logged-in user.
     await ContentModel.create({
         link,
         type,
         title,
-
-        //@ts-ignore
-        userId: req.userId,  // User ID is fetched from middleware
-        tags: [],  // Initialize tags as an empty array
+        userId: req.userId, // userId is added by the middleware.
+        tags: [] // Initialize tags as an empty array.
     });
 
-    res.json({ message: "Content Created!" });  // Respond with success message
+    res.json({ message: "Content added" }); // Send success response.
 });
 
-// Route to fetch all content for a user
+// Route 4: Get User Content
 app.get("/api/v1/content", userMiddleware, async (req, res) => {
-    
     //@ts-ignore
     const userId = req.userId;  // User ID is fetched from middleware
     // Fetch all content associated with the user ID and populate username
@@ -89,20 +72,66 @@ app.get("/api/v1/content", userMiddleware, async (req, res) => {
     res.json(content);  // Send the content as response
 });
 
-// Route to delete content
+// Route 5: Delete User Content
 app.delete("/api/v1/content", userMiddleware, async (req, res) => {
-    const contentId = req.body.contentId;  // Get the content ID from request body
+    const contentId = req.body.contentId;
 
-    // Delete content that matches the content ID and is associated with the authenticated user
-    await ContentModel.deleteMany({
-        contentId,
-
-        // @ts-ignore
-        userId: req.userId,  // User ID is fetched from middleware
-    });
-
-    res.json({ message: "Content deleted" });  // Respond with success message
+    // Delete content based on contentId and userId.
+    await ContentModel.deleteMany({ contentId, userId: req.userId });
+    res.json({ message: "Deleted" }); // Send success response.
 });
 
-// Start the server and listen on port 3000
-app.listen(3000);
+// Route 6: Share Content Link
+app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
+    const { share } = req.body;
+    if (share) {
+        // Check if a link already exists for the user.
+        const existingLink = await LinkModel.findOne({ userId: req.userId });
+        if (existingLink) {
+            res.json({ hash: existingLink.hash }); // Send existing hash if found.
+            return;
+        }
+
+        // Generate a new hash for the shareable link.
+        const hash = random(10);
+        await LinkModel.create({ userId: req.userId, hash });
+        res.json({ hash }); // Send new hash in the response.
+    } else {
+        // Remove the shareable link if share is false.
+        await LinkModel.deleteOne({ userId: req.userId });
+        res.json({ message: "Removed link" }); // Send success response.
+    }
+});
+
+// Route 7: Get Shared Content
+app.get("/api/v1/brain/:shareLink", async (req, res) => {
+    const hash = req.params.shareLink;
+
+    // Find the link using the provided hash.
+    const link = await LinkModel.findOne({ hash });
+    if (!link) {
+        res.status(404).json({ message: "Invalid share link" }); // Send error if not found.
+        return;
+    }
+
+    // Fetch content and user details for the shareable link.
+    const content = await ContentModel.find({ userId: link.userId });
+    const user = await UserModel.findOne({ _id: link.userId });
+
+    if (!user) {
+        res.status(404).json({ message: "User not found" }); // Handle missing user case.
+        return;
+    }
+
+    res.json({
+        username: user.username,
+        content
+    }); // Send user and content details in response.
+});
+
+// Start the server
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
+
+
