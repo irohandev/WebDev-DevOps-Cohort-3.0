@@ -2,7 +2,6 @@
 import mongoose, { model, Schema } from "mongoose";
 
 // Connecting to the MongoDB database using a connection string
-// Replace "password12345" with your actual database password for security
 mongoose.connect("Your Connection String");
 
 // Defining a schema for the 'User' collection
