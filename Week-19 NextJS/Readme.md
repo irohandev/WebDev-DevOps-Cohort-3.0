@@ -4,7 +4,7 @@ Unfortunately, **Day-2** class was **canceled** . This repository currently cont
 - 📝 Lecture Notes  
 - 💻 Code Examples
 
-**NestJS**  began last week (Week 18). Day-1 serves as a continuation of from last week class
+**NestJS**  began last week (Week 18). Day-1 serves as a continuation from last week class
 
 
 Stay tuned for updates as we progress further! 🚀  
