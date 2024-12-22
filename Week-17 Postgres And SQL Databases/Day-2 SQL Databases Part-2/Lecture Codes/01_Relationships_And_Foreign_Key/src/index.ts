@@ -58,8 +58,8 @@ app.post("/signup", async (req, res) => {
 
         // Inserting user details into the 'users' table and returning the newly created user's ID
         const insertQuery = `INSERT INTO users(username, email, password) VALUES ($1, $2, $3) RETURNING id;`;
-        const insertresponse = await pgClient.query(insertQuery, [username, email, password]);
-        const userId = insertresponse.rows[0].id;
+        const insertResponse = await pgClient.query(insertQuery, [username, email, password]);
+        const userId = insertResponse.rows[0].id;
 
         // Inserting address details into the 'addresses' table and associating them with the user ID
         const addressQuery = `INSERT INTO addresses (city, country, street, pincode, user_id) VALUES ($1, $2, $3, $4, $5);`;
