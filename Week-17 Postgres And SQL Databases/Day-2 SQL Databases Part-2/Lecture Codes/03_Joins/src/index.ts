@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 
 // Creating a PostgreSQL client instance with the database connection string
-const pgClient = new Client("URL");
+const pgClient = new Client("YOUR URL");
 
 // Connecting to the PostgreSQL database
 pgClient.connect();
