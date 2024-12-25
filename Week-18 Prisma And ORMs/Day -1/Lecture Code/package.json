@@ -11,7 +11,9 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.1.0",
+    "@types/express": "^5.0.0",
     "@types/pg": "^8.11.10",
+    "express": "^4.21.2",
     "pg": "^8.13.1",
     "prisma": "^6.1.0",
     "typescript": "^5.7.2"

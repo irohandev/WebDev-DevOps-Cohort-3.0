@@ -17,6 +17,7 @@ model User {
   password    String                       // Stores the user's password.
   age         Int                          // Stores the user's age as an integer.
   city        String?                      // An optional field for the user's city (can be null).
+  todos       Todo[]                       // Establishes a one-to-many relationship with the 'Todo' model.
 }
 
 // Defines the 'Todo' model, which maps to another database table.
@@ -25,6 +26,7 @@ model Todo {
   title       String                        // The title of the todo item.
   description String                        // A detailed description of the todo item.
   userId      Int                           // A foreign key referencing the associated user (not explicitly defined as a relation here).
+  user        User @relation(fields: [userId], references: [id]) // Defines the relationship to the 'User' model, linking 'userId' to the 'id' in 'User'.
   
   // time      DateTime @default(now())      // If this field is added later, it will require a default value for new todos.
   // Note: To avoid errors for old records without a timestamp, you can make this field optional using `?`. Otherwise, only new records will require a timestamp.
