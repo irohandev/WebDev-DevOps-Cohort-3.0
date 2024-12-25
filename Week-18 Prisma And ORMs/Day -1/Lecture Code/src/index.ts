@@ -1,2 +1,1 @@
-var message:string = "Hello World" 
-console.log(message)
+import { PrismaClient } from "@prisma/client";'@prisma/client'

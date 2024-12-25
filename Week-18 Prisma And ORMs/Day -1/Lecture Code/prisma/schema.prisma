@@ -1,0 +1,47 @@
+// Defines the generator for Prisma Client. The 'prisma-client-js' provider ensures that Prisma generates a JavaScript/TypeScript client for interacting with the database.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Defines the database connection details. In this case, we are using a PostgreSQL database.
+// The connection URL is stored in an environment variable (DATABASE_URL), which ensures security and flexibility.
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Defines the 'User' model, which maps to a database table.
+model User {
+  id          Int @default(autoincrement()) @id // Primary key, auto-incremented for unique identification.
+  username    String @unique                // A unique username for each user.
+  password    String                       // Stores the user's password.
+  age         Int                          // Stores the user's age as an integer.
+  city        String?                      // An optional field for the user's city (can be null).
+}
+
+// Defines the 'Todo' model, which maps to another database table.
+model Todo {
+  id          Int @default(autoincrement()) @id // Primary key, auto-incremented for unique identification.
+  title       String                        // The title of the todo item.
+  description String                        // A detailed description of the todo item.
+  userId      Int                           // A foreign key referencing the associated user (not explicitly defined as a relation here).
+  
+  // time      DateTime @default(now())      // If this field is added later, it will require a default value for new todos.
+  // Note: To avoid errors for old records without a timestamp, you can make this field optional using `?`. Otherwise, only new records will require a timestamp.
+}
+
+/* Notes:
+  1. When you run `npx prisma init`, this schema file is automatically created. 
+     - You need to configure the database URL in the `.env` file to connect to your database.
+  
+  2. The schema acts as a blueprint for defining the structure of your database tables (documentation-style declaration).
+
+  3. After defining your schema, run `npx prisma migrate dev` to create migration files.
+     - This generates a migration file and automatically applies it to your database, creating tables that match the schema.
+
+  4. Anytime you make changes to the schema (e.g., adding, modifying fields), you must run `npx prisma migrate dev` again.
+     - This keeps the database schema in sync with your Prisma schema.
+
+  5. After setting up your models, generate the Prisma client by running `npx prisma generate`.
+     - This creates the client in your `node_modules` directory, which you can use in your code to interact with the database.
+*/
