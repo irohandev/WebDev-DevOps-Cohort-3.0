@@ -1,10 +1,14 @@
 export default function Home() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold text-blue-600">
-        First Next.js App - Todo Display App!
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 text-gray-800">
+      <h1 className="text-5xl font-extrabold text-blue-800 mb-6 shadow-md">
+        First Next.js App
       </h1>
-      <p>Go to route localhost:3000/todos for viewing the todos</p>
+      <p className="text-lg font-medium bg-white p-4 rounded-lg shadow-lg">
+        Welcome to the Todo Display App! 🚀 <br />
+        Navigate to{" "}
+        <code className="font-mono text-blue-600">localhost:3000/todos</code> to view your todos.
+      </p>
     </div>
   );
 }
