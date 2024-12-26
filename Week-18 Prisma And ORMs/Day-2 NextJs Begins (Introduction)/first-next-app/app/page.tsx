@@ -4,6 +4,7 @@ export default function Home() {
       <h1 className="text-4xl font-bold text-blue-600">
         First Next.js App - Todo Display App!
       </h1>
+      <p>Go to route localhost:3000/todos for viewing the todos</p>
     </div>
   );
 }

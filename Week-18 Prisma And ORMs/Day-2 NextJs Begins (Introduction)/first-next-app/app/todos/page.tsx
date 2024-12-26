@@ -11,9 +11,11 @@ export default async function Blogs(){
 
     const blogs = await getBlogs();
 
-return <div>
-        {blogs.map((blog: Itodo) => <Todo title={blog.title} completed={blog.completed} />)}
-    </div>
+    return (
+        <div>
+            {blogs.map((blog: Itodo) => <Todo title={blog.title} completed={blog.completed} />)}
+        </div>
+    )
 }
 
 interface Itodo {
