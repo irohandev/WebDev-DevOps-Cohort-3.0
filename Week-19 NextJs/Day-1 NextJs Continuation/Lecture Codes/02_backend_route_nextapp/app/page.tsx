@@ -10,7 +10,7 @@ export default async function Home() {
       <h2 style={{ fontWeight: "normal", marginTop: "30px", color: "#16a085" }}>
         To see the fetched result, kindly navigate to: 
         <a 
-          href="http://localhost:3000/user" 
+          href="http://localhost:3000/api/v1/user/details" 
           style={{ textDecoration: "none", color: "#2980b9" }}
         >
           localhost:3000/user
