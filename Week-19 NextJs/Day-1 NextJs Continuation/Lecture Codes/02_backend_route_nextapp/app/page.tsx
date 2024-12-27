@@ -13,7 +13,7 @@ export default async function Home() {
           href="http://localhost:3000/api/v1/user/details" 
           style={{ textDecoration: "none", color: "#2980b9" }}
         >
-          localhost:3000/user
+          localhost:3000/user/api/v1/user/details
         </a>
       </h2>
       <p style={{ marginTop: "20px", fontSize: "16px", color: "#7f8c8d" }}>
