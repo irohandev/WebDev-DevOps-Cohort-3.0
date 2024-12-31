@@ -1,101 +1,73 @@
-import Image from "next/image";
+// Client-Side Rendering Example
 
-export default function Home() {
+// "use client"; 
+// Indicates that this component should be rendered on the client side.
+
+// import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
+// Importing functions and hooks from the 'next-auth/react' library.
+// - SessionProvider: Wraps components to provide session data.
+// - signIn: Function to initiate user sign-in.
+// - signOut: Function to log the user out.
+// - useSession: Hook to access session information (status, data).
+
+// export default function Home() {
+// Exporting a default component for the home page.
+// The SessionProvider wraps RealHome to provide session context.
+
+//   return (
+//     <SessionProvider>
+//       <RealHome/>
+//     </SessionProvider>    
+//   );
+// }
+
+// function RealHome() {
+// Defines the RealHome component where user authentication actions occur.
+
+//   const session = useSession();
+//   // useSession hook provides session information and status.
+
+//   return (
+//     <div>
+//       {/* If the user is authenticated, show a sign-out button */}
+//       {session.status === "authenticated" && <button onClick={() => signOut()}>Sign Out</button>}
+
+//       {/* If the user is unauthenticated, show a sign-in button */}
+//       {session.status === "unauthenticated" && <button onClick={() => signIn()}>Sign In</button>}
+//     </div>
+//   );
+// }
+
+// In client-side rendering (CSR), the session data is fetched and handled directly in the browser.
+// The SessionProvider ensures session state is shared across components.
+
+
+
+
+// Server-Side Rendering Example
+import { getServerSession } from "next-auth";
+// Importing the getServerSession function from 'next-auth' to fetch session data on the server side.
+
+export default async function Home() {
+  // Async function to fetch session data before rendering the page.
+
+  const session = await getServerSession();
+  // getServerSession fetches session information during the server-side rendering process.
+  // This ensures the session data is available when the page is rendered.
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div>
+      {JSON.stringify(session)}
+      {/* Displaying the session data as a JSON string for debugging purposes. */}
     </div>
   );
 }
+
+// In server-side rendering (SSR):
+// - The session is retrieved on the server before the page is sent to the client.
+// - This ensures that the session data is available at the time of initial page load.
+// - It's useful for pages requiring secure access or personalized content.
+
+// Comparison:
+// CSR: Fetches session data dynamically in the browser, providing flexibility and responsiveness.
+// SSR: Fetches session data on the server, ensuring data is available during the initial page load, which improves SEO and initial rendering performance.
